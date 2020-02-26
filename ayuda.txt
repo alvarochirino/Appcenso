@@ -1,0 +1,9 @@
+npm i react-native-splash-screen
+npm i react-native-banner-carousel
+backgroundColor: 'green',
+adb shell input keyevent KEYCODE_MENU
+//crear apk
+react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res
+clear project
+generar apk
+SmartCat123
