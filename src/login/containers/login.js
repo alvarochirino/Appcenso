@@ -72,12 +72,12 @@ const styles = StyleSheet.create({
    text1: {
       fontSize: 13,
       textAlign: 'center',
-      fontFamily: 'conthrax-sb',
+      fontFamily: 'ConthraxSb-Regular',
       color: 'black',
    },
    text2: {
       fontSize: 19,
-      fontFamily: 'conthrax-sb',
+      fontFamily: 'ConthraxSb-Regular',
       color: 'black',
    },
    containerButton: {

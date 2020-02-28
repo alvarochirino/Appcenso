@@ -193,7 +193,7 @@ const styles = StyleSheet.create({
    },
    text: {
       fontSize: 9.5,
-      fontFamily: 'conthrax-sb',
+      fontFamily: 'ConthraxSb-Regular',
       width: 95,
       color: 'black',
    },
@@ -221,6 +221,6 @@ const styles = StyleSheet.create({
    buttonText: {
       color: 'white',
       textAlign: 'center',
-      fontFamily: 'conthrax-sb',
+      fontFamily: 'ConthraxSb-Regular',
    },
 })

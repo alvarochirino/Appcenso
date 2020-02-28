@@ -65,6 +65,7 @@
 		DD662ED6AF94456BB6AA94C6 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6FAC01D5B7DD4B2AB0F958E6 /* Feather.ttf */; };
 		E55373984E9E403081D39EEC /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 87636529701C4BE4B7F0F8E5 /* MaterialIcons.ttf */; };
 		EA2D071D70B44713845A1633 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C5BD0F8C24564C9486850C05 /* Zocial.ttf */; };
+		EC4F7EB32409C860006DFA64 /* ConthraxSb-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4F7E7E2409C860006DFA64 /* ConthraxSb-Regular.ttf */; };
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		FEDF2F40928C4E87B935EE47 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 91446802277F4B4F8C1D3B1F /* Ionicons.ttf */; };
@@ -516,6 +517,7 @@
 		CBA261518F754077A2DEF5E5 /* libSplashScreen.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libSplashScreen.a; sourceTree = "<group>"; };
 		D10B384189344D24830AD2A4 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		D720C8CBDED44E4BAC50A75E /* libRNGestureHandler-tvOS.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = "libRNGestureHandler-tvOS.a"; sourceTree = "<group>"; };
+		EC4F7E7E2409C860006DFA64 /* ConthraxSb-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "ConthraxSb-Regular.ttf"; path = "../assets/font/ConthraxSb-Regular.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F19ECA706C2E4C3E813DA93F /* libRNCAsyncStorage.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libRNCAsyncStorage.a; sourceTree = "<group>"; };
@@ -801,6 +803,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				EC4F7E7E2409C860006DFA64 /* ConthraxSb-Regular.ttf */,
 				13B07FAE1A68108700A75B9A /* pruebas */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* pruebasTests */,
@@ -1543,6 +1546,7 @@
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				EC4F7EB32409C860006DFA64 /* ConthraxSb-Regular.ttf in Resources */,
 				0FEF168000F64EBB832B2C47 /* AntDesign.ttf in Resources */,
 				2010A584F298484E9F83D9E7 /* Entypo.ttf in Resources */,
 				BB92303D650E4B74BA1554FD /* EvilIcons.ttf in Resources */,
