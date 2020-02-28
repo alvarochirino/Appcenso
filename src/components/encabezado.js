@@ -53,12 +53,12 @@ const styles = StyleSheet.create({
 	text1: {
 		fontSize: 24,
 		color: 'black',
-		fontFamily: 'conthrax-sb',
+		fontFamily: 'ConthraxSb-Regular',
 		textAlign: 'center',
 	},
 	text2: {
 		color: 'black',
-		fontFamily: 'conthrax-sb',
+		fontFamily: 'ConthraxSb-Regular',
 		textAlign: 'center',
 	},
 })

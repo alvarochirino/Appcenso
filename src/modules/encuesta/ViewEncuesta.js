@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
    },
    textCheckbox: {
       fontSize: 14,
-      fontFamily: 'conthrax-sb',
+      fontFamily: 'ConthraxSb-Regular',
       color: 'white',
       paddingLeft: 15
    },

@@ -199,7 +199,7 @@ const styles = StyleSheet.create({
    },
    text2: {
       fontSize: 14,
-      fontFamily: 'conthrax-sb',
+      fontFamily: 'ConthraxSb-Regular',
       margin: 4,
       textAlign: 'center',
    },
@@ -227,7 +227,7 @@ const styles = StyleSheet.create({
       padding: 2,
       color: 'white',
       textAlign: 'center',
-      fontFamily: 'conthrax-sb',
+      fontFamily: 'ConthraxSb-Regular',
       fontSize: 13,
    },
    containerText: {

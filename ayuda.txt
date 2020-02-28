@@ -1,5 +1,4 @@
-npm i react-native-splash-screen
-npm i react-native-banner-carousel
+
 backgroundColor: 'green',
 adb shell input keyevent KEYCODE_MENU
 //crear apk
@@ -7,3 +6,16 @@ react-native bundle --platform android --dev false --entry-file index.js --bundl
 clear project
 generar apk
 SmartCat123
+
+
+GIT
+git init
+git remote add origin https://github.com/dharavp/AuthFirebase-react-native.gi
+git add .
+git commit -m "initial commit"
+git push -u origin master
+
+git pull
+git branch -u origin/master
+
+git pull origin master --allow-unrelated-histories

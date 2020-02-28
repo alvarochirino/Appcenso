@@ -250,7 +250,7 @@ const styles = StyleSheet.create({
    titulo: {
       fontSize: 17,
       textAlign: 'center',
-      fontFamily: 'conthrax-sb',
+      fontFamily: 'ConthraxSb-Regular',
       color: 'black',
       margin: 6,
    },
@@ -262,7 +262,7 @@ const styles = StyleSheet.create({
    },
    text: {
       fontSize: 10,
-      fontFamily: 'conthrax-sb',
+      fontFamily: 'ConthraxSb-Regular',
       width: 99,
       color: 'black',
    },
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
    },
    text1: {
       fontSize: 7,
-      fontFamily: 'conthrax-sb',
+      fontFamily: 'ConthraxSb-Regular',
       width: 100,
       color: 'black',
    },
@@ -299,7 +299,7 @@ const styles = StyleSheet.create({
       fontSize: 12,
       color: 'white',
       textAlign: 'center',
-      fontFamily: 'conthrax-sb',
+      fontFamily: 'ConthraxSb-Regular',
    },
    logo: {
       height: '10%',
