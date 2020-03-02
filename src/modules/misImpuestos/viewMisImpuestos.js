@@ -9,7 +9,7 @@ export default class ViewMisImpuestos extends Component {
   render() {
     return (
       <View style={{ flex: 1 }}>
-        <Encabezado title="MIS IMPUESTOS" subtitle="COMO VAMOS!!" subtitle2="SECRETARIA DE ADMINISTRACIÓN" />
+        <Encabezado title="MIS IMPUESTOS" subtitle="COMO VAMOS!!" subtitle2="SECRETARIA DE ADMINISTRACIÓN" navigation={this.props.navigation}/>
         <Entradas />       
       </View>
     )

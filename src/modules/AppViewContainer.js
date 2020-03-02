@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, ActivityIndicator, View, Image, StyleSheet, ScrollView, TouchableOpacity, Alert, ImageBackground, SafeAreaView } from 'react-native';
+import { Text, ActivityIndicator, View, Image, StyleSheet, ScrollView, TouchableOpacity, SafeAreaView } from 'react-native';
 import Carousel from 'react-native-banner-carousel';
 import AsyncStorage from '@react-native-community/async-storage';
 import { StackActions, NavigationActions } from 'react-navigation';
@@ -88,39 +88,37 @@ export default class AppViewContainer extends Component {
 
    render() {
       return (
-          <View  style={styles.container}>
-          <SafeAreaView style={{backgroundColor: 'green'}}>
-         <ScrollView>
-          
-            <View style={styles.containerImage}>
-               {this.state.imagenes.length > 0 ?
-                  <Carousel
-                     autoplay
-                     autoplayTimeout={5000}
-                     loop
-                     index={0}
-                  >
-                     {this.state.imagenes.map((image, index) => this.renderPage(image, index))}
-                  </Carousel>
-                  : (<View style={styles.containerImage}>
-                     <ActivityIndicator />
-                     <Text>Cargando...</Text>
-                     {this.mensaje()}
-                  </View>)
-               }
-            </View>
-            <ViewEncuesta />
-            <Pages navigation={this.props.navigation} />
-            <View style={styles.containerLogo} >
-               <TouchableOpacity onPress={this.logout} style={styles.button}>
-                  <Text style={styles.buttonText}>Cerrar Sesion</Text>
-               </TouchableOpacity>
-               <Image style={styles.logo} source={require('../../assets/smartcat.png')} />
-            </View>
-                                                  
-         </ScrollView>
-                                                  </SafeAreaView>
-                                                  </View>
+         <View style={styles.container}>
+            <SafeAreaView style={{ backgroundColor: 'green', margin: 0 }}>
+               <ScrollView>
+                  <View style={styles.containerImage}>
+                     {this.state.imagenes.length > 0 ?
+                        <Carousel
+                           autoplay
+                           autoplayTimeout={5000}
+                           loop
+                           index={0}
+                        >
+                           {this.state.imagenes.map((image, index) => this.renderPage(image, index))}
+                        </Carousel>
+                        : (<View style={styles.containerImage}>
+                           <ActivityIndicator />
+                           <Text>Cargando...</Text>
+                           {this.mensaje()}
+                        </View>)
+                     }
+                  </View>
+                  <ViewEncuesta />
+                  <Pages navigation={this.props.navigation} />
+                  <View style={styles.containerLogo} >
+                     <TouchableOpacity onPress={this.logout} style={styles.button}>
+                        <Text style={styles.buttonText}>Cerrar Sesion</Text>
+                     </TouchableOpacity>
+                     <Image style={styles.logo} source={require('../../assets/smartcat.png')} />
+                  </View>
+               </ScrollView>
+            </SafeAreaView>
+         </View>
       );
    }
 }
@@ -145,7 +143,7 @@ const styles = StyleSheet.create({
    image: {
       height: 280,
       resizeMode: 'contain',
-      //backgroundColor: 'gray'
+      backgroundColor: 'blue'
    },
    containerLogo: {
       flexDirection: 'row',

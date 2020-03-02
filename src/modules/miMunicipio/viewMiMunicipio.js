@@ -52,7 +52,7 @@ class ViewMiMunicipio extends Component {
    render() {
       return (
          <View style={{ flex: 1 }}>
-            <Encabezado title="MI MUNICIPIO" subtitle="GUÍA TELEFÓNICA" subtitle2="NÚMEROS DE EMERGENCIA" />
+            <Encabezado title="MI MUNICIPIO" subtitle="GUÍA TELEFÓNICA" subtitle2="NÚMEROS DE EMERGENCIA" navigation={this.props.navigation}/>
             <FlatList
                keyExtractor={this.keyExtractor}
                ItemSeparatorComponent={this.itemSeparator}

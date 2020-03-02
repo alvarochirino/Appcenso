@@ -16,7 +16,7 @@ export default class ViewVendeCiudad extends Component {
     render() {
         return (
             <View style={{flex:1}}>
-                <Encabezado title="VENDE CIUDAD" subtitle="GUÍA COMERCIAL de" subtitle2='ACTIVIDADES ECONÓMICA'/>
+                <Encabezado title="VENDE CIUDAD" subtitle="GUÍA COMERCIAL de" subtitle2='ACTIVIDADES ECONÓMICA' navigation={this.props.navigation}/>
                 <Busqueda/>               
             </View>
         )

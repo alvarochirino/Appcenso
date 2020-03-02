@@ -58,7 +58,7 @@ export default class ViewMisTramites extends Component {
    render() {
       return (
          <View style={{ flex: 1 }}>
-            <Encabezado title="MIS TRAMITES" subtitle="MEJORANDO PARA" subtitle2="ATENDERLO MEJOR" />
+            <Encabezado title="MIS TRAMITES" subtitle="MEJORANDO PARA" subtitle2="ATENDERLO MEJOR" navigation={this.props.navigation}/>
             <ScrollView style={{ flex: 1 }}>
                <Entradas />
                <View style={{ marginHorizontal: 20 }}>

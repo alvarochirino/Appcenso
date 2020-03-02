@@ -16,7 +16,7 @@ export default class ViewTransportePub extends Component {
     render() {
         return (
             <View style={{ flex: 1 }}>
-                <Encabezado title="TRANSPORTE PÚBLICO" subtitle="GUÍA DE TRANSP. PÚBLICO" />
+                <Encabezado title="TRANSPORTE PÚBLICO" subtitle="GUÍA DE TRANSP. PÚBLICO" navigation={this.props.navigation}/>
                 <Busqueda />
             </View>
         )

@@ -27,7 +27,7 @@ export default class ViewReporteMedioAmbiente extends Component {
     render() {
         return (
             <View style={{flex: 1, backgroundColor: 'white',}}>
-                <Encabezado title="CIUDAD VERDE" subtitle="CUIDEMOS NUESTROS ÁRBOLES" subtitle2="DIRECCIÓN DE MEDIO AMBIENTE"/>
+                <Encabezado title="CIUDAD VERDE" subtitle="CUIDEMOS NUESTROS ÁRBOLES" subtitle2="DIRECCIÓN DE MEDIO AMBIENTE" navigation={this.props.navigation}/>
                 <Body idDireccion={2} tipos={this.state.listaTipos} nombre="Indicar el tipo de daño"
                 titulo="Los árboles nos proporcionan un medio ambiente sano y confortable, cuidemos nuestros árboles.!"/>
             </View>
