@@ -29,8 +29,8 @@ export default class Splash extends Component {
                 estado = activo.estado
             }
         }
-        /* console.log('id?', id);
-        console.log('estado?', estado); */
+        console.log('id?', id);
+        console.log('estado?', estado);
         console.log('tokenuser?', value)
         if (value !== null && estado == "Activo") {
             const resetAction = StackActions.reset({

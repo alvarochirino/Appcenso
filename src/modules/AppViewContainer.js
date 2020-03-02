@@ -89,7 +89,7 @@ export default class AppViewContainer extends Component {
    render() {
       return (
          <View style={styles.container}>
-            <SafeAreaView style={{ backgroundColor: 'green', margin: 0 }}>
+            <SafeAreaView>
                <ScrollView>
                   <View style={styles.containerImage}>
                      {this.state.imagenes.length > 0 ?

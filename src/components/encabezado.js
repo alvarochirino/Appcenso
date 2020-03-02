@@ -60,9 +60,9 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 	},
 	left: {
-		//backgroundColor: 'blue',
 		flex: 77,
 		alignItems: 'center',
+		//backgroundColor: 'blue',
 	},
 	right: {
 		flex: 18,
