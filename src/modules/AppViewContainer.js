@@ -143,7 +143,7 @@ const styles = StyleSheet.create({
    image: {
       height: 280,
       resizeMode: 'contain',
-      backgroundColor: 'blue'
+      //backgroundColor: 'blue'
    },
    containerLogo: {
       flexDirection: 'row',
