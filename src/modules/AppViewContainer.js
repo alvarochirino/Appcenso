@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, ActivityIndicator, View, Image, StyleSheet, ScrollView, TouchableOpacity, Alert, ImageBackground } from 'react-native';
+import { Text, ActivityIndicator, View, Image, StyleSheet, ScrollView, TouchableOpacity, Alert, ImageBackground, SafeAreaView } from 'react-native';
 import Carousel from 'react-native-banner-carousel';
 import AsyncStorage from '@react-native-community/async-storage';
 import { StackActions, NavigationActions } from 'react-navigation';
@@ -88,7 +88,10 @@ export default class AppViewContainer extends Component {
 
    render() {
       return (
-         <ScrollView style={styles.container}>
+          <View  style={styles.container}>
+          <SafeAreaView style={{backgroundColor: 'green'}}>
+         <ScrollView>
+          
             <View style={styles.containerImage}>
                {this.state.imagenes.length > 0 ?
                   <Carousel
@@ -114,7 +117,10 @@ export default class AppViewContainer extends Component {
                </TouchableOpacity>
                <Image style={styles.logo} source={require('../../assets/smartcat.png')} />
             </View>
+                                                  
          </ScrollView>
+                                                  </SafeAreaView>
+                                                  </View>
       );
    }
 }

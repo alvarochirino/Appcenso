@@ -24,7 +24,7 @@ export default class App extends Component<Props> {
         >
           <View style={{ flex: 1 }}>
             <StatusBar
-              barStyle="light-content"
+              barStyle="default"
               backgroundColor="#000"
             />
             <AppLayout />
