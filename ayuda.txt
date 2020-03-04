@@ -18,6 +18,11 @@ git push -u origin master
 git pull
 git branch -u origin/master
 
+->forzar git pull
+git fetch --all
+git reset --hard origin/master
+
+
 git pull origin master --allow-unrelated-histories
 
 https://github.com/alexherold-dev/smartapp.git
