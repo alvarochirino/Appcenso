@@ -38,7 +38,7 @@
 		</dict>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string/>
+	<string></string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>ConthraxSb-Regular.ttf</string>
@@ -75,6 +75,10 @@
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
 	<key>NSPhotoLibraryUsageDescription</key>
+	<string>send images</string>
+	<key>NSCameraUsageDescription</key>
+	<string>send images</string>
+	<key>NSMicrophoneUsageDescription</key>
 	<string>send images</string>
 </dict>
 </plist>
