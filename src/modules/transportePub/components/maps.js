@@ -33,6 +33,7 @@ export default class Maps extends Component {
 
    requestLocationPermission = async () => {
       try {
+         console.log('llego')
          const granted = await PermissionsAndroid.request(
             PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
             {
@@ -41,6 +42,7 @@ export default class Maps extends Component {
                   'para que podamos saber dónde estás.'
             },
          )
+         console.log('llego1')
          if (granted === PermissionsAndroid.RESULTS.GRANTED) {
             if (this.props.linea) {
                console.log("mostrara ubicacion de la plaza de Yacuiba")
@@ -100,6 +102,7 @@ export default class Maps extends Component {
    }
 
    async componentDidMount() {
+      console.log('llegodid')
       await this.requestLocationPermission()
    }
 

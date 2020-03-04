@@ -165,7 +165,6 @@ dependencies {
     implementation project(':react-native-image-picker')
     implementation project(':react-native-youtube')
     implementation project(':react-native-splash-screen')
-    implementation project(':react-native-maps')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     //noinspection GradleCompatible
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
