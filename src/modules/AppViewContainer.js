@@ -59,10 +59,7 @@ export default class AppViewContainer extends Component {
       let final = url.indexOf("&");
       if (final == -1) final = url.length
       let id = url.substring(inicio + 2, final);
-      //console.log(id);
-      if (true) {
-         this.props.navigation.navigate('ViewVideos', { video: id });
-      }
+      this.props.navigation.navigate('ViewVideos', { video: id });
    }
 
    renderPage(image, index) {

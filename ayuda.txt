@@ -21,3 +21,5 @@ git branch -u origin/master
 git pull origin master --allow-unrelated-histories
 
 https://github.com/alexherold-dev/smartapp.git
+
+AIzaSyAv0i9fDPbZ724ekFGxoFfguFIeXkJXzfIAXs

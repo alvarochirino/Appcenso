@@ -196,7 +196,7 @@ export default class FormRegister extends Component {
                </TouchableOpacity>
                : <ActivityIndicator style={{ margin: 14 }} />
             }
-            <TouchableOpacity onPress={this.volver} style={styles.button2}>
+            <TouchableOpacity onPress={this.volver}>
                <Text style={styles.buttonText2}>Volver a login</Text>
             </TouchableOpacity>
             <Image
@@ -309,14 +309,8 @@ const styles = StyleSheet.create({
       textAlign: 'center',
       fontFamily: 'ConthraxSb-Regular',
    },
-   button2: {
-      width: 100,
-      padding: 4,
-      borderRadius: 10
-   },
    buttonText2: {
       color: 'black',
-      textAlign: 'center',
       textDecorationLine: 'underline'
    },
    logo: {

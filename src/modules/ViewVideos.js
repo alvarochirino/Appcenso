@@ -26,6 +26,11 @@ export default class ReactNativeYouTubeExample extends React.Component {
 
    _youTubeRef = React.createRef();
 
+   volver = () => {
+      this.props.navigation.goBack(null);
+      return true;
+   };
+
    render() {
       let videoId = this.props.navigation.getParam('video', '')
       return (
@@ -47,7 +52,12 @@ export default class ReactNativeYouTubeExample extends React.Component {
                   console.log(e)
                }}
             />
-
+            {Platform.OS === 'ios' ?
+               <TouchableOpacity onPress={this.volver} style={styles.button}>
+                  <Text style={styles.buttonText}>Atras</Text>
+               </TouchableOpacity>
+               : null
+            }
             {/* <Text style={styles.instructions}>
                {this.state.isReady ? 'Player is ready' : 'Player setting up...'}
             </Text>
@@ -93,5 +103,12 @@ const styles = StyleSheet.create({
    player: {
       alignSelf: 'stretch',
       marginVertical: 10,
+   },
+   button: {
+      alignItems: 'center'
+   },
+   buttonText: {
+      color: 'white',
+      textDecorationLine: 'underline'
    },
 });

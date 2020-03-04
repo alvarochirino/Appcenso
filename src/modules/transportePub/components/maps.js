@@ -43,8 +43,8 @@ export default class Maps extends Component {
 
   requestLocationPermission = async () => {
     try {
-      const granted = null;
-      if (Platform.OS === "android") {
+      var granted = true
+      if (Platform.OS === 'android') {
         granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
           {
@@ -56,7 +56,7 @@ export default class Maps extends Component {
         );
       }
       if (
-        Platform.OS !== "android" ||
+        Platform.OS !== 'android' ||
         granted === PermissionsAndroid.RESULTS.GRANTED
       ) {
         if (this.props.linea) {

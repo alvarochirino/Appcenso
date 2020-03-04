@@ -45,9 +45,7 @@ class AppViewInvitadoContainers extends Component {
     let final = url.indexOf("&");
     if (final == -1) final = url.length;
     let id = url.substring(inicio + 2, final);
-    if (true) {
-      this.props.navigation.navigate("ViewVideos", { video: id });
-    }
+    this.props.navigation.navigate("ViewVideos", { video: id });
   };
 
   renderPage(image, index) {
@@ -65,8 +63,8 @@ class AppViewInvitadoContainers extends Component {
             </View>
           </View>
         ) : (
-          <Image style={styles.image} source={{ uri: image.imagen }} />
-        )}
+            <Image style={styles.image} source={{ uri: image.imagen }} />
+          )}
       </View>
     );
   }
@@ -84,11 +82,11 @@ class AppViewInvitadoContainers extends Component {
                   )}
                 </Carousel>
               ) : (
-                <View style={styles.containerImage}>
-                  <ActivityIndicator />
-                  <Text>Cargando...</Text>
-                </View>
-              )}
+                  <View style={styles.containerImage}>
+                    <ActivityIndicator />
+                    <Text>Cargando...</Text>
+                  </View>
+                )}
             </View>
             <Pages navigation={this.props.navigation} />
             <View style={styles.containerLogo}>
