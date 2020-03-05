@@ -74,11 +74,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>send images</string>
 	<key>NSCameraUsageDescription</key>
-	<string>send images</string>
+	<string>AVCaptureDeviceInput</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>UIImagePickerController</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>send images</string>
+	<string>AVAudioSession requestRecordPermission:</string>
 </dict>
 </plist>

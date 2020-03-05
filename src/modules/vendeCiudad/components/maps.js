@@ -321,10 +321,10 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject
   },
   button: {
-    margin: 2,
+    margin: 10,
     backgroundColor: "#2196F3",
     paddingHorizontal: 15,
-    paddingVertical: 6,
+    paddingVertical: 5,
     borderRadius: 10
   },
   buttonText: {

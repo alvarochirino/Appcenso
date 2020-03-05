@@ -3,6 +3,7 @@ package com.smartapp_yc;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.heanoria.library.reactnative.locationenabler.RNAndroidLocationEnablerPackage;
 import com.rnfs.RNFSPackage;
@@ -11,7 +12,6 @@ import com.horcrux.svg.SvgPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
-import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.imagepicker.ImagePickerPackage;
 import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
@@ -36,6 +36,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new PickerPackage(),
             new MapsPackage(),
             new RNAndroidLocationEnablerPackage(),
             new RNFSPackage(),
@@ -44,7 +45,6 @@ public class MainApplication extends Application implements ReactApplication {
             new AsyncStoragePackage(),
             new RNGestureHandlerPackage(),
             new VectorIconsPackage(),
-            new PickerPackage(),
             new ImagePickerPackage(),
             new ReactNativeYouTube(),
             new SplashScreenReactPackage()
