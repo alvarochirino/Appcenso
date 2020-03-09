@@ -46,6 +46,14 @@ target 'pruebas' do
 
   pod 'react-native-youtube', :path => '../node_modules/react-native-youtube'
 
+  permissions_path = '../node_modules/react-native-permissions/ios'
+
+  pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
+  pod 'Permission-LocationWhenInUse', :path => "#{permissions_path}/LocationWhenInUse.podspec"
+  pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary.podspec"
+
+  pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
+
 end
 
 post_install do |installer|

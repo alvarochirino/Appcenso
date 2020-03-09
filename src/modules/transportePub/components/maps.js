@@ -13,6 +13,12 @@ import MapView, {
 } from "react-native-maps";
 import RNAndroidLocationEnabler from "react-native-android-location-enabler";
 import Icon from "react-native-vector-icons/Feather";
+import {
+  check,
+  PERMISSIONS,
+  RESULTS,
+  openSettings
+} from "react-native-permissions";
 
 const LATITUDE_DELTA1 = 0.08; //plaza
 const LONGITUDE_DELTA1 = 0.0365;
@@ -54,14 +60,48 @@ export default class Maps extends Component {
               "para que podamos saber dónde estás."
           }
         );
-      }else{
-        //granted = Permissions.request('location', { type: 'whenInUse' });
-        //granted = true
+      } else {
+        await check(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE)
+          .then(result => {
+            switch (result) {
+              case RESULTS.UNAVAILABLE:
+                console.log(
+                  "Esta función no está disponible (en este dispositivo / en este contexto)"
+                );
+                break;
+              case RESULTS.DENIED:
+                console.log(
+                  "El permiso no se ha solicitado / se niega pero solicitable"
+                );
+                break;
+              case RESULTS.GRANTED:
+                console.log("El permiso se otorga");
+                granted = true;
+                break;
+              case RESULTS.BLOCKED:
+                console.log(
+                  "El permiso es denegado y ya no se puede solicitar"
+                );
+                Alert.alert(
+                  "Active el permiso de ubicacion desde configuraciones y vuelva a ingresar"
+                );
+                openSettings().catch(() =>
+                  console.warn("cannot open settings")
+                );
+                break;
+            }
+          })
+          .catch(error => {
+            console.log("Error check permiso", error);
+          });
+        /* await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE).then(result => {
+            console.log('result', result);
+            if(result === 'granted'){
+              this.requestLocationPermission()
+            }
+          }); */
       }
-      if (
-        granted === true ||
-        granted === PermissionsAndroid.RESULTS.GRANTED
-      ) {
+      if (granted === true || granted === PermissionsAndroid.RESULTS.GRANTED) {
         if (this.props.linea) {
           console.log("mostrara ubicacion de la plaza de Yacuiba");
           this.setState({
@@ -94,7 +134,7 @@ export default class Maps extends Component {
               });
             },
             error => {
-              console.log(error)
+              console.log(error);
               if (Platform.OS === "android") {
                 RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
                   interval: 10000,

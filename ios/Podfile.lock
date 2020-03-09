@@ -27,6 +27,12 @@ PODS:
   - GoogleMaps/Base (2.5.0)
   - GoogleMaps/Maps (2.5.0):
     - GoogleMaps/Base
+  - Permission-Camera (2.0.9):
+    - RNPermissions
+  - Permission-LocationWhenInUse (2.0.9):
+    - RNPermissions
+  - Permission-PhotoLibrary (2.0.9):
+    - RNPermissions
   - QBImagePickerController (3.4.0)
   - React (0.59.8):
     - React/Core (= 0.59.8)
@@ -95,6 +101,8 @@ PODS:
     - QBImagePickerController
     - React/Core
     - RSKImageCropper
+  - RNPermissions (2.0.9):
+    - React
   - RSKImageCropper (2.2.3)
   - yoga (0.59.8.React)
   - YoutubePlayer-in-WKWebView (0.3.4)
@@ -105,6 +113,9 @@ DEPENDENCIES:
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
   - Google-Maps-iOS-Utils
   - GoogleMaps
+  - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera.podspec`)
+  - Permission-LocationWhenInUse (from `../node_modules/react-native-permissions/ios/LocationWhenInUse.podspec`)
+  - Permission-PhotoLibrary (from `../node_modules/react-native-permissions/ios/PhotoLibrary.podspec`)
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
   - react-native-youtube (from `../node_modules/react-native-youtube`)
@@ -122,6 +133,7 @@ DEPENDENCIES:
   - React/RCTVibration (from `../node_modules/react-native`)
   - React/RCTWebSocket (from `../node_modules/react-native`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
+  - RNPermissions (from `../node_modules/react-native-permissions`)
   - RSKImageCropper
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
   - YoutubePlayer-in-WKWebView (~> 0.3.0)
@@ -142,6 +154,12 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
+  Permission-Camera:
+    :path: "../node_modules/react-native-permissions/ios/Camera.podspec"
+  Permission-LocationWhenInUse:
+    :path: "../node_modules/react-native-permissions/ios/LocationWhenInUse.podspec"
+  Permission-PhotoLibrary:
+    :path: "../node_modules/react-native-permissions/ios/PhotoLibrary.podspec"
   React:
     :path: "../node_modules/react-native"
   react-native-google-maps:
@@ -152,6 +170,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-youtube"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
+  RNPermissions:
+    :path: "../node_modules/react-native-permissions"
   yoga:
     :path: "../node_modules/react-native/ReactCommon/yoga/yoga.podspec"
 
@@ -162,16 +182,20 @@ SPEC CHECKSUMS:
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
   GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
+  Permission-Camera: b0fec577b27488314a885f9c74433e02f3585b9b
+  Permission-LocationWhenInUse: f5dd8f5c9a0412db5eddd299ae208d6268b595b1
+  Permission-PhotoLibrary: 51718ddf8c0baf1cebf323c68cedcb2ff0cf304a
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   React: 76e6aa2b87d05eb6cccb6926d72685c9a07df152
   react-native-google-maps: 568cb03d0eae7fef93626f65d05be55642404ed4
   react-native-maps: 0316ed017dbb64b33b227751fa810e2454fcfa39
   react-native-youtube: 668f1c6badb6bebd807f795e3ead85b3aa0737ac
   RNImageCropPicker: 6134b66a3d5bc13e2895a97c630a4254006902b4
+  RNPermissions: 6db7e0a4d94c9c02390d11020b1d3d187aaf77e5
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   yoga: 92b2102c3d373d1a790db4ab761d2b0ffc634f64
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 1ec6c4acdaaa8478d88fa328bb807c2ef831b1c1
+PODFILE CHECKSUM: 4c833297b95f54d15c419ca8840f85174d034d2d
 
 COCOAPODS: 1.9.0
