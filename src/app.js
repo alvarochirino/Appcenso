@@ -15,6 +15,7 @@ import ViewMisInmuebles from './modules/misInmuebles/viewMisInmuebles'
 import ViewMisTramites from './modules/misTramites/viewMisTramites'
 import ViewTransportePub from './modules/transportePub/viewTransportePub'
 import ViewVideos from './modules/ViewVideos'
+//import ViewVideos from './modules/ViewVideos2'
 
 const MainNavigator = createStackNavigator(
    {

@@ -42,6 +42,10 @@ target 'pruebas' do
 
   pod 'RNImageCropPicker', :path => '../node_modules/react-native-image-crop-picker'
 
+  pod "YoutubePlayer-in-WKWebView", "~> 0.3.0"
+
+  pod 'react-native-youtube', :path => '../node_modules/react-native-youtube'
+
 end
 
 post_install do |installer|

@@ -36,6 +36,8 @@ PODS:
     - React
   - react-native-maps (0.24.2):
     - React
+  - react-native-youtube (1.1.0):
+    - React
   - React/Core (0.59.8):
     - yoga (= 0.59.8.React)
   - React/CxxBridge (0.59.8):
@@ -95,6 +97,7 @@ PODS:
     - RSKImageCropper
   - RSKImageCropper (2.2.3)
   - yoga (0.59.8.React)
+  - YoutubePlayer-in-WKWebView (0.3.4)
 
 DEPENDENCIES:
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
@@ -104,6 +107,7 @@ DEPENDENCIES:
   - GoogleMaps
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
+  - react-native-youtube (from `../node_modules/react-native-youtube`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -120,6 +124,7 @@ DEPENDENCIES:
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RSKImageCropper
   - yoga (from `../node_modules/react-native/ReactCommon/yoga/yoga.podspec`)
+  - YoutubePlayer-in-WKWebView (~> 0.3.0)
 
 SPEC REPOS:
   trunk:
@@ -128,6 +133,7 @@ SPEC REPOS:
     - GoogleMaps
     - QBImagePickerController
     - RSKImageCropper
+    - YoutubePlayer-in-WKWebView
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -142,6 +148,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
+  react-native-youtube:
+    :path: "../node_modules/react-native-youtube"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
   yoga:
@@ -158,10 +166,12 @@ SPEC CHECKSUMS:
   React: 76e6aa2b87d05eb6cccb6926d72685c9a07df152
   react-native-google-maps: 568cb03d0eae7fef93626f65d05be55642404ed4
   react-native-maps: 0316ed017dbb64b33b227751fa810e2454fcfa39
+  react-native-youtube: 668f1c6badb6bebd807f795e3ead85b3aa0737ac
   RNImageCropPicker: 6134b66a3d5bc13e2895a97c630a4254006902b4
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   yoga: 92b2102c3d373d1a790db4ab761d2b0ffc634f64
+  YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 42f37d0ff8a4486d3165037b31b332edf54f19db
+PODFILE CHECKSUM: 1ec6c4acdaaa8478d88fa328bb807c2ef831b1c1
 
 COCOAPODS: 1.9.0
