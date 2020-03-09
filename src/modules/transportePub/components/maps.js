@@ -43,8 +43,8 @@ export default class Maps extends Component {
 
   requestLocationPermission = async () => {
     try {
-      var granted = true
-      if (Platform.OS === 'android') {
+      var granted = false;
+      if (Platform.OS === "android") {
         granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
           {
@@ -54,9 +54,12 @@ export default class Maps extends Component {
               "para que podamos saber dónde estás."
           }
         );
+      }else{
+        //granted = Permissions.request('location', { type: 'whenInUse' });
+        //granted = true
       }
       if (
-        Platform.OS !== 'android' ||
+        granted === true ||
         granted === PermissionsAndroid.RESULTS.GRANTED
       ) {
         if (this.props.linea) {
@@ -91,14 +94,17 @@ export default class Maps extends Component {
               });
             },
             error => {
-              RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
-                interval: 10000,
-                fastInterval: 5000
-              })
-                .then(data => {
-                  this.requestLocationPermission();
+              console.log(error)
+              if (Platform.OS === "android") {
+                RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
+                  interval: 10000,
+                  fastInterval: 5000
                 })
-                .catch(err => console.log(err));
+                  .then(data => {
+                    this.requestLocationPermission();
+                  })
+                  .catch(err => console.log(err));
+              }
             },
             { enableHightAcuracy: true, timeout: 2000 }
           );

@@ -129,11 +129,11 @@ class PagesView extends Component {
                   onPress={this.transportePub}
                   style={styles.item}
                >
-                  {/* <Image
+                  <Image
                      resizeMode="contain"
                      source={transporte}
                      style={styles.itemImage}
-                  /> */}
+                  />
                </TouchableOpacity>
                <TouchableOpacity
                   onPress={this.vendeCiudad}
@@ -176,8 +176,8 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'space-around',
       marginHorizontal: 4,
-      backgroundColor: 'green',
-      padding: 5
+      /* backgroundColor: 'green',
+      padding: 5 */
    },
    itemImage: {
       flex: 1,

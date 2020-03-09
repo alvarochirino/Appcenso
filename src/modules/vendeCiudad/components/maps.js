@@ -48,8 +48,8 @@ export default class Maps extends Component {
 
   requestLocationPermission = async () => {
     try {
-      var granted = true
-      if (Platform.OS === 'android') {
+      var granted = true;
+      if (Platform.OS === "android") {
         granted = await PermissionsAndroid.request(
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
           {
@@ -61,7 +61,7 @@ export default class Maps extends Component {
         );
       }
       if (
-        Platform.OS !== 'android' ||
+        Platform.OS !== "android" ||
         granted === PermissionsAndroid.RESULTS.GRANTED
       ) {
         if (this.props.ubicacionIncidencia) {
@@ -96,15 +96,16 @@ export default class Maps extends Component {
               }
             },
             () => {
-              //Alert.alert('Por favor active su gps para mas precisión')
-              RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
-                interval: 10000,
-                fastInterval: 5000
-              })
-                .then(data => {
-                  this.requestLocationPermission();
+              if (Platform.OS === "android") {
+                RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
+                  interval: 10000,
+                  fastInterval: 5000
                 })
-                .catch(err => console.log(err));
+                  .then(data => {
+                    this.requestLocationPermission();
+                  })
+                  .catch(err => console.log(err));
+              }
             },
             { enableHightAcuracy: true, timeout: 2000 }
           );
@@ -128,14 +129,16 @@ export default class Maps extends Component {
               });
             },
             error => {
-              RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
-                interval: 10000,
-                fastInterval: 5000
-              })
-                .then(data => {
-                  this.requestLocationPermission();
+              if (Platform.OS === "android") {
+                RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
+                  interval: 10000,
+                  fastInterval: 5000
                 })
-                .catch(err => console.log(err));
+                  .then(data => {
+                    this.requestLocationPermission();
+                  })
+                  .catch(err => console.log(err));
+              }
             },
             { enableHightAcuracy: true, timeout: 2000 }
           );
@@ -184,14 +187,16 @@ export default class Maps extends Component {
         });
       },
       () => {
-        RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
-          interval: 10000,
-          fastInterval: 5000
-        })
-          .then(data => {
-            this.onPress();
+        if (Platform.OS === "android") {
+          RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
+            interval: 10000,
+            fastInterval: 5000
           })
-          .catch(err => console.log(err));
+            .then(data => {
+              this.onPress();
+            })
+            .catch(err => console.log(err));
+        }
       },
       { enableHightAcuracy: true, timeout: 2000 }
     );
