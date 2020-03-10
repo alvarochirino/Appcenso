@@ -156,8 +156,6 @@ dependencies {
     implementation project(':react-native-image-crop-picker')
     implementation project(':react-native-maps')
     implementation project(':react-native-android-location-enabler')
-    implementation project(':react-native-fs')
-    implementation project(':react-native-image-resizer')
     implementation project(':react-native-permissions')
     //implementation 'com.facebook.fresco:fresco:2.0.0'
     //implementation 'com.facebook.fresco:animated-gif:1.10.0'

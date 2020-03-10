@@ -17,8 +17,6 @@ import Icon from 'react-native-vector-icons/Feather';
 import ImagePicker from 'react-native-image-crop-picker';
 import AsyncStorage from '@react-native-community/async-storage';
 import Modal from "react-native-modal";
-import ImageResizer from 'react-native-image-resizer';
-import RNFS from 'react-native-fs';
 
 import API from '../../../../utils/api'
 import Maps from '../../vendeCiudad/components/maps'
@@ -121,20 +119,6 @@ export default class Body extends Component {
       return this.renderImage(image);
    }
 
-   /* toDataURL = (url, callback) => {
-      var xhr = new XMLHttpRequest();
-      xhr.onload = function () {
-         var reader = new FileReader();
-         reader.onloadend = function () {
-            callback(reader.result);
-         }
-         reader.readAsDataURL(xhr.response);
-      };
-      xhr.open('GET', url);
-      xhr.responseType = 'blob';
-      xhr.send();
-   } */
-
    _onPressButton = async () => {
       if (this.state.image == null && this.state.images.length == 0) {
          Alert.alert('Por favor subir una foto o imagen')
@@ -174,21 +158,6 @@ export default class Body extends Component {
          console.log('imagen2', imagen2)
          var imagen3 = await AsyncStorage.getItem('@Reporte:image3');
          console.log('imagen3', imagen3)
-
-         /* this.toDataURL(imagen1, (dataUrl) => { imagen1 = dataUrl })
-         console.log('imagen1B64', imagen1);
-
-
-         var imagen2 = await AsyncStorage.getItem('@Reporte:image2');
-         console.log('imagen2', imagen2)
-         if (imagen2 != null) {
-            this.toDataURL(imagen2, (dataUrl) => { imagen2 = dataUrl })
-         }
-         var imagen3 = await AsyncStorage.getItem('@Reporte:image3');
-         console.log('imagen3', imagen3)
-         if (imagen3 != null) {
-            this.toDataURL(imagen3, (dataUrl) => { imagen3 = dataUrl })
-         } */
          var idUsuario = await AsyncStorage.getItem('@User:id');
          console.log('idUsuario', idUsuario)
          var idTipoProblema = await AsyncStorage.getItem('@Reporte:idTipoProblema');

@@ -199,7 +199,7 @@ export default class Maps extends Component {
           });
         }
       } else {
-        console.warn("Permiso de ubicación denegado");
+        console.log("Permiso de ubicación denegado");
       }
     } catch (err) {
       console.warn(err);

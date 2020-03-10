@@ -15,7 +15,6 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
 import com.reactnativecommunity.rnpermissions.RNPermissionsPackage;
-import com.rnfs.RNFSPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
@@ -23,7 +22,6 @@ import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import java.util.Arrays;
 import java.util.List;
 
-import fr.bamlab.rnimageresizer.ImageResizerPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -41,8 +39,6 @@ public class MainApplication extends Application implements ReactApplication {
             new PickerPackage(),
             new MapsPackage(),
             new RNAndroidLocationEnablerPackage(),
-            new RNFSPackage(),
-            new ImageResizerPackage(),
             new SvgPackage(),
             new AsyncStoragePackage(),
             new RNGestureHandlerPackage(),
