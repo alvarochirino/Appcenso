@@ -57,27 +57,25 @@ export default class Body extends Component {
    pickSingleWithCamera(cropping, mediaType = 'photo') {
       ImagePicker.openCamera({
          cropping: cropping,
-         width: 600,
-         height: 600,
-         compressImageMaxWidth: 800,
-         compressImageMaxHeight: 800,
+         compressImageMaxWidth: 600,
+         compressImageMaxHeight: 700,
          compressImageQuality: 1,
          includeExif: true,
          mediaType,
+         includeBase64: true
       }).then(image => {
          console.log('received image', image);
-         var paso;
-         for (paso = 1; paso <= 3; paso++) {
+         for (var paso = 1; paso <= 3; paso++) {
             var value = AsyncStorage.getItem('@Reporte:image' + paso);
             if (value !== null) {
                AsyncStorage.setItem('@Reporte:image' + paso, '');
             }
          };
          this.setState({
-            image: { uri: image.path, width: image.width, height: image.height, mime: image.mime, data: image.data },
+            image: { uri: image.path, width: image.width, height: image.height, data: image.data },
             images: null
          });
-         console.log('ancho y alto', image.width);
+         console.log('image', this.state.image);
       }).catch(e => console.log('error', e));
    }
 
@@ -85,10 +83,8 @@ export default class Body extends Component {
       ImagePicker.openPicker({
          multiple: true,
          cropping: true,
-         width: 600,
-         height: 600,
-         compressImageMaxWidth: 800,
-         compressImageMaxHeight: 800,
+         compressImageMaxWidth: 600,
+         compressImageMaxHeight: 700,
          compressImageQuality: 1,
          waitAnimationEnd: false,
          includeExif: true,
@@ -96,8 +92,7 @@ export default class Body extends Component {
       }).then(images => {
          AsyncStorage.removeItem('@Reporte:image')
          if (images.length < 4) {
-            var paso;
-            for (paso = 1; paso <= 3; paso++) {
+            for (var paso = 1; paso <= 3; paso++) {
                var value = AsyncStorage.getItem('@Reporte:image' + paso);
                if (value !== null) {
                   AsyncStorage.setItem('@Reporte:image' + paso, '');
@@ -107,10 +102,10 @@ export default class Body extends Component {
                image: null,
                images: images.map(i => {
                   console.log('received image', i);
-                  console.log('ancho y alto', i.width);
-                  return { uri: i.path, width: i.width, height: i.height, mime: i.mime, data: i.data };
+                  return { uri: i.path, width: i.width, height: i.height, data: i.data };
                })
             });
+            console.log('images', this.state.images);
          } else {
             Alert.alert('Seleccionar máximo 3 imagenes')
             return
@@ -126,7 +121,7 @@ export default class Body extends Component {
       return this.renderImage(image);
    }
 
-   toDataURL = (url, callback) => {
+   /* toDataURL = (url, callback) => {
       var xhr = new XMLHttpRequest();
       xhr.onload = function () {
          var reader = new FileReader();
@@ -138,17 +133,7 @@ export default class Body extends Component {
       xhr.open('GET', url);
       xhr.responseType = 'blob';
       xhr.send();
-   }
-
-   handleBase64 = async (path) => {
-      /* var directorio = path.substring(0, path.lastIndexOf("/"));
-      directorio = directorio.substring(directorio.lastIndexOf(":") + 1, directorio.length); */
-      const resizedImageUrl = await ImageResizer.createResizedImage(path, 800, 800, "PNG", 80, 0, RNFS.DocumentDirectoryPath);
-      //const resizedImageUrl = await ImageResizer.createResizedImage(path, 200, 80, "PNG", 80, 0, RNFS.DocumentDirectoryPath);
-      const base64 = await RNFS.readFile(resizedImageUrl, "base64");
-      console.log('base64', base64);
-      return base64;
-   }
+   } */
 
    _onPressButton = async () => {
       if (this.state.image == null && this.state.images.length == 0) {
@@ -163,16 +148,15 @@ export default class Body extends Component {
             AsyncStorage.setItem('@Reporte:idTipoProblema', this.state.idTipoProblema.toString());
             AsyncStorage.setItem('@Reporte:observacion', this.state.observacion);
             if (this.state.image != null) {
-               AsyncStorage.setItem('@Reporte:image1', this.state.image.uri);
+               AsyncStorage.setItem('@Reporte:image1', 'data:image/png;base64,' + this.state.image.data);
             } else {
                var paso;
                for (paso = 1; paso <= this.state.images.length; paso++) {
                   try {
-                     AsyncStorage.setItem('@Reporte:image' + paso, this.state.images[paso - 1].uri);
+                     AsyncStorage.setItem('@Reporte:image' + paso, 'data:image/png;base64,' + this.state.images[paso - 1].data);
                   } catch (e) {
                      console.error('@Reporte:image' + paso, e.error)
                   }
-                  //console.log('asyn', AsyncStorage.getItem('@Reporte:image' + paso));
                };
             }
          } catch (e) {
@@ -186,18 +170,12 @@ export default class Body extends Component {
          console.log('longitud', longitud)
          var imagen1 = await AsyncStorage.getItem('@Reporte:image1');
          console.log('imagen1', imagen1)
+         var imagen2 = await AsyncStorage.getItem('@Reporte:image2');
+         console.log('imagen2', imagen2)
+         var imagen3 = await AsyncStorage.getItem('@Reporte:image3');
+         console.log('imagen3', imagen3)
 
-         /* var directorio = imagen1.substring(0, imagen1.lastIndexOf("/"));
-         var directorio = imagen1.substring(directorio.lastIndexOf(":") + 1, directorio.length); */
-         /* const resizedImageUrl = await ImageResizer.createResizedImage(imagen1, 800, 800, "PNG", 80, 0, directorio);
-         console.log('resizedImageUrl', resizedImageUrl);
-         debugger; */
-
-         /* var imagen0 = await this.handleBase64(imagen1);
-         console.log('imagen0', imagen0);
-         debugger; */
-
-         this.toDataURL(imagen1, (dataUrl) => { imagen1 = dataUrl })
+         /* this.toDataURL(imagen1, (dataUrl) => { imagen1 = dataUrl })
          console.log('imagen1B64', imagen1);
 
 
@@ -210,12 +188,13 @@ export default class Body extends Component {
          console.log('imagen3', imagen3)
          if (imagen3 != null) {
             this.toDataURL(imagen3, (dataUrl) => { imagen3 = dataUrl })
-         }
+         } */
          var idUsuario = await AsyncStorage.getItem('@User:id');
          console.log('idUsuario', idUsuario)
          var idTipoProblema = await AsyncStorage.getItem('@Reporte:idTipoProblema');
          console.log('id tipo DE problma', idTipoProblema)
          //debugger;
+
          let inserto = await API.guardarReporte(observacion, latitud, longitud, imagen1, imagen2, imagen3, idUsuario, idTipoProblema, this.props.idDireccion)
          //let inserto = await API.guardarReporte(observacion, latitud, longitud, imagen1, "base64", "base64", idUsuario, idTipoProblema, this.props.idDireccion)
          console.log('inserto?', inserto)
@@ -254,7 +233,7 @@ export default class Body extends Component {
          aclaracion: this.props.tipos[index].aclaracion,
          idTipoProblema: this.props.tipos[index].id,
       })
-      console.log(this.state.idTipoProblema)
+      //console.log(this.state.idTipoProblema)
    }
 
    onChange = (text) => {
@@ -321,6 +300,7 @@ export default class Body extends Component {
                placeholderTextColor={'#c7c7c7'}
                underlineColorAndroid={'transparent'}
             />
+
             {this.state.hayUbicacion ?
                <TouchableOpacity
                   style={styles.button3}
@@ -334,6 +314,7 @@ export default class Body extends Component {
                   <Text style={styles.buttonText}>Seleccione la ubicación</Text>
                </TouchableOpacity>
             }
+
             {this.state.mostrarEnviar ?
                <TouchableOpacity
                   style={styles.button}
@@ -456,10 +437,10 @@ const styles = StyleSheet.create({
       margin: 2,
    },
    image: {
-      width: 100,
-      height: 150,
+      width: 120,
+      height: 170,
       resizeMode: 'contain',
-      margin: 5
+      margin: 2
    },
    /* input: {
       //backgroundColor: 'white',

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
    StyleSheet, TextInput, View, Text, TouchableOpacity, Alert, ActivityIndicator, Image,
-   Animated, Dimensions, Keyboard, UIManager
+   Animated, Dimensions, Keyboard, UIManager, Platform
 } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -196,9 +196,12 @@ export default class FormRegister extends Component {
                </TouchableOpacity>
                : <ActivityIndicator style={{ margin: 14 }} />
             }
-            <TouchableOpacity onPress={this.volver}>
-               <Text style={styles.buttonText2}>Volver a login</Text>
-            </TouchableOpacity>
+            {Platform.OS === 'ios' ?
+               <TouchableOpacity onPress={this.volver}>
+                  <Text style={styles.buttonText2}>Volver a login</Text>
+               </TouchableOpacity>
+               : null
+            }
             <Image
                source={require('../../../assets/logo.png')}
                style={styles.logo}
