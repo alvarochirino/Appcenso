@@ -99,12 +99,6 @@ export default class Maps extends Component {
           .catch(error => {
             console.log("Error check permiso", error);
           });
-        /* await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE).then(result => {
-            console.log('result', result);
-            if(result === 'granted'){
-              this.requestLocationPermission()
-            }
-          }); */
       }
       if (granted === true || granted === PermissionsAndroid.RESULTS.GRANTED) {
         if (this.props.ubicacionIncidencia) {

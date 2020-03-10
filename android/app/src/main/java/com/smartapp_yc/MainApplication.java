@@ -2,27 +2,28 @@ package com.smartapp_yc;
 
 import android.app.Application;
 
-import com.facebook.react.ReactApplication;
-import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
-import com.reactnative.ivpusic.imagepicker.PickerPackage;
 import com.airbnb.android.react.maps.MapsPackage;
-import com.heanoria.library.reactnative.locationenabler.RNAndroidLocationEnablerPackage;
-import com.rnfs.RNFSPackage;
-import fr.bamlab.rnimageresizer.ImageResizerPackage;
-import com.horcrux.svg.SvgPackage;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
-import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
-import com.oblador.vectoricons.VectorIconsPackage;
-import com.imagepicker.ImagePickerPackage;
-import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.heanoria.library.reactnative.locationenabler.RNAndroidLocationEnablerPackage;
+import com.horcrux.svg.SvgPackage;
+import com.inprogress.reactnativeyoutube.ReactNativeYouTube;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.reactnative.ivpusic.imagepicker.PickerPackage;
+import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
+import com.reactnativecommunity.rnpermissions.RNPermissionsPackage;
+import com.rnfs.RNFSPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
 
 import java.util.Arrays;
 import java.util.List;
+
+import fr.bamlab.rnimageresizer.ImageResizerPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -46,8 +47,8 @@ public class MainApplication extends Application implements ReactApplication {
             new AsyncStoragePackage(),
             new RNGestureHandlerPackage(),
             new VectorIconsPackage(),
-            new ImagePickerPackage(),
-            new SplashScreenReactPackage()
+            new SplashScreenReactPackage(),
+            new RNPermissionsPackage()
       );
     }
 
