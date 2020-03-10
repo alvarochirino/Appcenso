@@ -18,7 +18,6 @@ import Pages from "./PagesView";
 const myIcon = <Icon name="youtube-play" size={40} color={"red"} />;
 
 class AppViewInvitadoContainers extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -63,54 +62,47 @@ class AppViewInvitadoContainers extends Component {
             </View>
           </View>
         ) : (
-            <Image style={styles.image} source={{ uri: image.imagen }} />
-          )}
+          <Image style={styles.image} source={{ uri: image.imagen }} />
+        )}
       </View>
     );
   }
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView>
         <SafeAreaView>
-          <ScrollView>
-            <View style={styles.containerImage}>
-              {this.state.imagenes.length > 0 ? (
-                <Carousel autoplay autoplayTimeout={6000} loop index={0}>
-                  {this.state.imagenes.map((image, index) =>
-                    this.renderPage(image, index)
-                  )}
-                </Carousel>
-              ) : (
-                  <View style={styles.containerImage}>
-                    <ActivityIndicator />
-                    <Text>Cargando...</Text>
-                  </View>
+          <View style={styles.containerImage}>
+            {this.state.imagenes.length > 0 ? (
+              <Carousel autoplay autoplayTimeout={6000} loop index={0}>
+                {this.state.imagenes.map((image, index) =>
+                  this.renderPage(image, index)
                 )}
-            </View>
-            <Pages navigation={this.props.navigation} />
-            <View style={styles.containerLogo}>
-              <TouchableOpacity onPress={this.volver} style={styles.button}>
-                <Text style={styles.buttonText}>Volver a login</Text>
-              </TouchableOpacity>
-              <Image
-                style={styles.logo}
-                source={require("../../assets/smartcat.png")}
-              />
-            </View>
-          </ScrollView>
+              </Carousel>
+            ) : (
+              <View style={styles.containerImage}>
+                <ActivityIndicator />
+                <Text>Cargando...</Text>
+              </View>
+            )}
+          </View>
+          <Pages navigation={this.props.navigation} />
+          <View style={styles.containerLogo}>
+            <TouchableOpacity onPress={this.volver} style={styles.button}>
+              <Text style={styles.buttonText}>Volver a login</Text>
+            </TouchableOpacity>
+            <Image
+              style={styles.logo}
+              source={require("../../assets/smartcat.png")}
+            />
+          </View>
         </SafeAreaView>
-      </View>
+      </ScrollView>
     );
   }
-
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    flexDirection: "column"
-  },
   containerImage: {
     height: 280,
     alignItems: "center",

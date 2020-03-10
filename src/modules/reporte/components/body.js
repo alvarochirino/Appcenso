@@ -55,8 +55,8 @@ export default class Body extends Component {
    pickSingleWithCamera(cropping, mediaType = 'photo') {
       ImagePicker.openCamera({
          cropping: cropping,
-         compressImageMaxWidth: 600,
-         compressImageMaxHeight: 700,
+         compressImageMaxWidth: 650,
+         compressImageMaxHeight: 800,
          compressImageQuality: 1,
          includeExif: true,
          mediaType,
@@ -80,9 +80,8 @@ export default class Body extends Component {
    pickMultiple() {
       ImagePicker.openPicker({
          multiple: true,
-         cropping: true,
-         compressImageMaxWidth: 600,
-         compressImageMaxHeight: 700,
+         compressImageMaxHeight: 800,
+         compressImageMaxWidth: 650,
          compressImageQuality: 1,
          waitAnimationEnd: false,
          includeExif: true,

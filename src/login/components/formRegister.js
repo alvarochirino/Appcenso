@@ -314,7 +314,9 @@ const styles = StyleSheet.create({
    },
    buttonText2: {
       color: 'black',
-      textDecorationLine: 'underline'
+      textDecorationLine: 'underline',
+      margin: 5,
+      marginBottom: 10,
    },
    logo: {
       height: '10%',
