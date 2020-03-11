@@ -4,6 +4,7 @@ import {
   View,
   StyleSheet,
   Alert,
+  Platform,
   TextInput,
   TouchableOpacity,
   ScrollView,
@@ -97,30 +98,32 @@ export default class Body extends Component {
       })
       .catch(e => {
         console.log("error", e);
-        check(PERMISSIONS.IOS.CAMERA)
-          .then(result => {
-            switch (result) {
-              case RESULTS.UNAVAILABLE:
-                console.log(
-                  "Esta función no está disponible (en este dispositivo / en este contexto)"
-                );
-                break;
-              case RESULTS.BLOCKED:
-                console.log(
-                  "El permiso es denegado y ya no se puede solicitar"
-                );
-                Alert.alert(
-                  "Active el permiso de camara desde configuraciones"
-                );
-                openSettings().catch(() =>
-                  console.warn("cannot open settings")
-                );
-                break;
-            }
-          })
-          .catch(error => {
-            console.log("Error check permiso", error);
-          });
+        if(Platform.OS === 'ios'){
+          check(PERMISSIONS.IOS.CAMERA)
+            .then(result => {
+              switch (result) {
+                case RESULTS.UNAVAILABLE:
+                  console.log(
+                    "Esta función no está disponible (en este dispositivo / en este contexto)"
+                  );
+                  break;
+                case RESULTS.BLOCKED:
+                  console.log(
+                    "El permiso es denegado y ya no se puede solicitar"
+                  );
+                  Alert.alert(
+                    "Active el permiso de camara desde configuraciones"
+                  );
+                  openSettings().catch(() =>
+                    console.warn("cannot open settings")
+                  );
+                  break;
+              }
+            })
+            .catch(error => {
+              console.log("Error check permiso", error);
+            });
+        }
       });
   }
 
@@ -163,30 +166,32 @@ export default class Body extends Component {
       })
       .catch(e => {
         console.log("error", e);
-        check(PERMISSIONS.IOS.PHOTO_LIBRARY)
-          .then(result => {
-            switch (result) {
-              case RESULTS.UNAVAILABLE:
-                console.log(
-                  "Esta función no está disponible (en este dispositivo / en este contexto)"
-                );
-                break;
-              case RESULTS.BLOCKED:
-                console.log(
-                  "El permiso es denegado y ya no se puede solicitar"
-                );
-                Alert.alert(
-                  "Active el permiso de fotos desde configuraciones"
-                );
-                openSettings().catch(() =>
-                  console.warn("cannot open settings")
-                );
-                break;
-            }
-          })
-          .catch(error => {
-            console.log("Error check permiso", error);
-          });
+        if(Platform.OS === 'ios'){
+          check(PERMISSIONS.IOS.PHOTO_LIBRARY)
+            .then(result => {
+              switch (result) {
+                case RESULTS.UNAVAILABLE:
+                  console.log(
+                    "Esta función no está disponible (en este dispositivo / en este contexto)"
+                  );
+                  break;
+                case RESULTS.BLOCKED:
+                  console.log(
+                    "El permiso es denegado y ya no se puede solicitar"
+                  );
+                  Alert.alert(
+                    "Active el permiso de fotos desde configuraciones"
+                  );
+                  openSettings().catch(() =>
+                    console.warn("cannot open settings")
+                  );
+                  break;
+              }
+            })
+            .catch(error => {
+              console.log("Error check permiso", error);
+            });
+        }
       });
   }
 
