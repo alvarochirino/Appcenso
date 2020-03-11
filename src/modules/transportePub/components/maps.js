@@ -17,7 +17,7 @@ import {
   check,
   PERMISSIONS,
   RESULTS,
-  openSettings,
+  openSettings
 } from "react-native-permissions";
 
 const LATITUDE_DELTA1 = 0.08; //plaza
@@ -43,7 +43,7 @@ export default class Maps extends Component {
         longitudeDelta: LONGITUDE_DELTA1
       }),
       width: "101%",
-      b: true
+      mostrarRuta: true
     };
   }
 
@@ -89,7 +89,7 @@ export default class Maps extends Component {
                 openSettings().catch(() =>
                   console.warn("cannot open settings")
                 );
-                this.props.navigation.goBack(null);
+                //this.props.navigation.goBack(null);
                 break;
             }
           })
@@ -107,7 +107,7 @@ export default class Maps extends Component {
               latitudeDelta: LATITUDE_DELTA1,
               longitudeDelta: LONGITUDE_DELTA1
             },
-            b: false
+            mostrarRuta: false
           });
         } else {
           console.log("mostrara tu ubicacion");
@@ -126,11 +126,11 @@ export default class Maps extends Component {
                   latitudeDelta: LATITUDE_DELTA2,
                   longitudeDelta: LONGITUDE_DELTA2
                 }),
-                b: true
+                mostrarRuta: true
               });
             },
             error => {
-              console.log(error);
+              console.log('error', error);
               if (Platform.OS === "android") {
                 RNAndroidLocationEnabler.promptForEnableLocationIfNeeded({
                   interval: 10000,
@@ -155,12 +155,6 @@ export default class Maps extends Component {
         }
       } else {
         console.log("Permiso de ubicación denegado");
-        /* await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE).then(result => {
-            console.log('result', result);
-            if(result === 'granted'){
-              this.requestLocationPermission()
-            }
-          }); */
       }
     } catch (err) {
       console.warn("err ", err);
@@ -172,7 +166,7 @@ export default class Maps extends Component {
   }
 
   rutas = listaTransp => {
-    if (!this.state.b) {
+    if (!this.state.mostrarRuta) {
       this.requestLocationPermission();
     }
     if (listaTransp.ruta_geom != null) {
@@ -195,7 +189,7 @@ export default class Maps extends Component {
   };
 
   ruta = linea => {
-    if (this.state.b) {
+    if (this.state.mostrarRuta) {
       this.requestLocationPermission();
     }
     var txt = linea.ruta_geom;

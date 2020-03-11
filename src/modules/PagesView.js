@@ -98,7 +98,7 @@ class PagesView extends Component {
                   style={styles.item}
                >
                   <Image
-                     resizeMode="contain"
+                     //resizeMode="contain"
                      source={mimunicipio}
                      style={styles.itemImage}
                   />
@@ -108,7 +108,6 @@ class PagesView extends Component {
                   style={styles.item}
                >
                   <Image
-                     resizeMode="contain"
                      source={mitramite}
                      style={styles.itemImage}
                   />
@@ -118,7 +117,6 @@ class PagesView extends Component {
                   style={styles.item}
                >
                   <Image
-                     resizeMode="contain"
                      source={immuebles}
                      style={styles.itemImage}
                   />
@@ -130,7 +128,6 @@ class PagesView extends Component {
                   style={styles.item}
                >
                   <Image
-                     resizeMode="contain"
                      source={transporte}
                      style={styles.itemImage}
                   />
@@ -140,7 +137,6 @@ class PagesView extends Component {
                   style={styles.item}
                >
                   <Image
-                     resizeMode="contain"
                      source={vendeciudad}
                      style={styles.itemImage}
                   />
@@ -150,7 +146,6 @@ class PagesView extends Component {
                   style={styles.item}
                >
                   <Image
-                     resizeMode="contain"
                      source={reportedesperfecto}
                      style={styles.itemImage}
                   />
@@ -172,15 +167,13 @@ const styles = StyleSheet.create({
    },
    item: {
       flex: 1,
-      height: 112,
+      height: 113,
       alignItems: 'center',
       justifyContent: 'space-around',
       marginHorizontal: 4,
-      /* backgroundColor: 'green',
-      padding: 5 */
    },
    itemImage: {
-      flex: 1,
+      height: 113,
       resizeMode: 'contain',
    },
 });

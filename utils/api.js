@@ -228,7 +228,6 @@ class Api {
    }
 
    guardarReporte(comentario, latitud, longitud, imagen1, imagen2, imagen3, idUsuario, idTipoProblema, idDireccion) {
-      console.log(imagen1);
       return fetch(`${BASE_API}guardarReporte`, {
          method: 'POST',
          headers: {
