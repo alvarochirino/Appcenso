@@ -17,7 +17,7 @@ import {
   check,
   PERMISSIONS,
   RESULTS,
-  openSettings
+  openSettings,
 } from "react-native-permissions";
 
 const LATITUDE_DELTA1 = 0.08; //plaza
@@ -73,6 +73,7 @@ export default class Maps extends Component {
                 console.log(
                   "El permiso no se ha solicitado / se niega pero solicitable"
                 );
+                granted = true;
                 break;
               case RESULTS.GRANTED:
                 console.log("El permiso se otorga");
@@ -88,18 +89,13 @@ export default class Maps extends Component {
                 openSettings().catch(() =>
                   console.warn("cannot open settings")
                 );
+                this.props.navigation.goBack(null);
                 break;
             }
           })
           .catch(error => {
             console.log("Error check permiso", error);
           });
-        /* await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE).then(result => {
-            console.log('result', result);
-            if(result === 'granted'){
-              this.requestLocationPermission()
-            }
-          }); */
       }
       if (granted === true || granted === PermissionsAndroid.RESULTS.GRANTED) {
         if (this.props.linea) {
@@ -159,6 +155,12 @@ export default class Maps extends Component {
         }
       } else {
         console.log("Permiso de ubicación denegado");
+        /* await request(PERMISSIONS.IOS.LOCATION_WHEN_IN_USE).then(result => {
+            console.log('result', result);
+            if(result === 'granted'){
+              this.requestLocationPermission()
+            }
+          }); */
       }
     } catch (err) {
       console.warn("err ", err);

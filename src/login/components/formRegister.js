@@ -187,7 +187,6 @@ export default class FormRegister extends Component {
                   style={styles.input}
                   secureTextEntry={true}
                   onChangeText={(text) => this.validate(text, 'contraseña2')}
-                  onSubmitEditing={this._onPressButton}
                />
             </View>
             {this.state.mostrarBoton ?

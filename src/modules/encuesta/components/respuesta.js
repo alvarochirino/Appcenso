@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, CheckBox, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 
 export default class Respuesta extends Component {

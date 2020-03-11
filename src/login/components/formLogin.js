@@ -130,7 +130,7 @@ export default class FormLogin extends Component {
                   style={styles.input}
                   secureTextEntry={true}
                   onChangeText={(text) => this.validate(text, 'contraseña')}
-                  onSubmitEditing={this._onPressButton}
+                  //onSubmitEditing={this._onPressButton}
                />
             </View>
             <View style={styles.row}>

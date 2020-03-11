@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, FlatList, StatusBar, View, Dimensions, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet } from 'react-native';
 
 import API from '../../../../utils/api'
 import Respuesta from './respuesta'

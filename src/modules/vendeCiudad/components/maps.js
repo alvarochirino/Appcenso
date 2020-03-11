@@ -78,6 +78,7 @@ export default class Maps extends Component {
                 console.log(
                   "El permiso no se ha solicitado / se niega pero solicitable"
                 );
+                granted = true;
                 break;
               case RESULTS.GRANTED:
                 console.log("El permiso se otorga");
