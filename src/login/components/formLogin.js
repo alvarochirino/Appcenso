@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
-   Text, View, StyleSheet, TextInput, TouchableOpacity, Alert, ActivityIndicator, Picker,
-   Animated, Dimensions, Keyboard, UIManager,
+   Text, View, StyleSheet, TextInput, TouchableOpacity, Alert, ActivityIndicator,
+   Animated, Dimensions, Keyboard, UIManager, Platform
 } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -114,9 +114,10 @@ export default class FormLogin extends Component {
       return (
          <Animated.View style={[styles.container, { transform: [{ translateY: shift }] }]}>
             <View style={styles.row}>
-               <View style={{ height: 36, justifyContent: 'center'}}>
+               {/* <View style={{ height: 36, justifyContent: 'center'}}>
                   <Text style={styles.text}>CORREO ELECTRONICO:</Text>
-               </View>
+               </View> */}
+               <Text style={styles.text}>CORREO ELECTRONICO:</Text>
                <TextInput
                   style={styles.input}
                   value={this.state.correo}
@@ -130,7 +131,7 @@ export default class FormLogin extends Component {
                   style={styles.input}
                   secureTextEntry={true}
                   onChangeText={(text) => this.validate(text, 'contraseña')}
-                  //onSubmitEditing={this._onPressButton}
+                  onSubmitEditing={Platform.OS === 'android' ? this._onPressButton : null}
                />
             </View>
             <View style={styles.row}>
@@ -150,22 +151,24 @@ export default class FormLogin extends Component {
       const { height: windowHeight } = Dimensions.get('window');
       const keyboardHeight = event.endCoordinates.height;
       const currentlyFocusedField = TextInputState.currentlyFocusedField();
-      UIManager.measure(currentlyFocusedField, (originX, originY, width, height, pageX, pageY) => {
-         const fieldHeight = height;
-         const fieldTop = pageY;
-         const gap = (windowHeight - keyboardHeight) - (fieldTop + fieldHeight);
-         if (gap >= 0) {
-            return;
-         }
-         Animated.timing(
-            this.state.shift,
-            {
-               toValue: gap,
-               duration: 1000,
-               useNativeDriver: true,
+      if (currentlyFocusedField !== null) {
+         UIManager.measure(currentlyFocusedField, (originX, originY, width, height, pageX, pageY) => {
+            const fieldHeight = height;
+            const fieldTop = pageY;
+            const gap = (windowHeight - keyboardHeight) - (fieldTop + fieldHeight);
+            if (gap >= 0) {
+               return;
             }
-         ).start();
-      });
+            Animated.timing(
+               this.state.shift,
+               {
+                  toValue: gap,
+                  duration: 1000,
+                  useNativeDriver: true,
+               }
+            ).start();
+         });
+      }
    }
 
    handleKeyboardDidHide = () => {

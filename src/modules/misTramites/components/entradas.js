@@ -189,22 +189,24 @@ export default class Entradas extends Component {
       const { height: windowHeight } = Dimensions.get('window');
       const keyboardHeight = event.endCoordinates.height;
       const currentlyFocusedField = TextInputState.currentlyFocusedField();
-      UIManager.measure(currentlyFocusedField, (originX, originY, width, height, pageX, pageY) => {
-         const fieldHeight = height;
-         const fieldTop = pageY;
-         const gap = (windowHeight - (keyboardHeight - 15)) - (fieldTop + fieldHeight);
-         if (gap >= 0) {
-            return;
-         }
-         Animated.timing(
-            this.state.shift,
-            {
-               toValue: gap,
-               duration: 1000,
-               useNativeDriver: true,
+      if (currentlyFocusedField !== null) {
+         UIManager.measure(currentlyFocusedField, (originX, originY, width, height, pageX, pageY) => {
+            const fieldHeight = height;
+            const fieldTop = pageY;
+            const gap = (windowHeight - (keyboardHeight - 15)) - (fieldTop + fieldHeight);
+            if (gap >= 0) {
+               return;
             }
-         ).start();
-      });
+            Animated.timing(
+               this.state.shift,
+               {
+                  toValue: gap,
+                  duration: 1000,
+                  useNativeDriver: true,
+               }
+            ).start();
+         });
+      }
    }
 
    handleKeyboardDidHide = () => {

@@ -98,7 +98,7 @@ export default class Body extends Component {
       })
       .catch(e => {
         console.log("error", e);
-        if(Platform.OS === 'ios'){
+        if (Platform.OS === 'ios') {
           check(PERMISSIONS.IOS.CAMERA)
             .then(result => {
               switch (result) {
@@ -166,7 +166,7 @@ export default class Body extends Component {
       })
       .catch(e => {
         console.log("error", e);
-        if(Platform.OS === 'ios'){
+        if (Platform.OS === 'ios') {
           check(PERMISSIONS.IOS.PHOTO_LIBRARY)
             .then(result => {
               switch (result) {
@@ -364,8 +364,8 @@ export default class Body extends Component {
             {this.state.image ? this.renderAsset(this.state.image) : null}
             {this.state.images
               ? this.state.images.map(i => (
-                  <View key={i.uri}>{this.renderAsset(i)}</View>
-                ))
+                <View key={i.uri}>{this.renderAsset(i)}</View>
+              ))
               : null}
           </ScrollView>
         </View>
@@ -395,18 +395,18 @@ export default class Body extends Component {
             </Text>
           </TouchableOpacity>
         ) : (
-          <TouchableOpacity style={styles.button2} onPress={this.mostrarMapa}>
-            <Text style={styles.buttonText}>Seleccione la ubicación</Text>
-          </TouchableOpacity>
-        )}
+            <TouchableOpacity style={styles.button2} onPress={this.mostrarMapa}>
+              <Text style={styles.buttonText}>Seleccione la ubicación</Text>
+            </TouchableOpacity>
+          )}
 
         {this.state.mostrarEnviar ? (
           <TouchableOpacity style={styles.button} onPress={this._onPressButton}>
             <Text style={styles.buttonText}>ENVIAR</Text>
           </TouchableOpacity>
         ) : (
-          <ActivityIndicator style={{ margin: 18 }} />
-        )}
+            <ActivityIndicator style={{ margin: 18 }} />
+          )}
       </Animated.ScrollView>
     );
   }
@@ -415,23 +415,25 @@ export default class Body extends Component {
     const { height: windowHeight } = Dimensions.get("window");
     const keyboardHeight = event.endCoordinates.height;
     const currentlyFocusedField = TextInputState.currentlyFocusedField();
-    UIManager.measure(
-      currentlyFocusedField,
-      (originX, originY, width, height, pageX, pageY) => {
-        const fieldHeight = height;
-        const fieldTop = pageY;
-        const gap =
-          windowHeight - (keyboardHeight - 150) - (fieldTop + fieldHeight);
-        if (gap >= 0) {
-          return;
+    if (currentlyFocusedField !== null) {
+      UIManager.measure(
+        currentlyFocusedField,
+        (originX, originY, width, height, pageX, pageY) => {
+          const fieldHeight = height;
+          const fieldTop = pageY;
+          const gap =
+            windowHeight - (keyboardHeight - 150) - (fieldTop + fieldHeight);
+          if (gap >= 0) {
+            return;
+          }
+          Animated.timing(this.state.shift, {
+            toValue: gap,
+            duration: 1000,
+            useNativeDriver: true
+          }).start();
         }
-        Animated.timing(this.state.shift, {
-          toValue: gap,
-          duration: 1000,
-          useNativeDriver: true
-        }).start();
-      }
-    );
+      );
+    }
   };
 
   handleKeyboardDidHide = () => {
