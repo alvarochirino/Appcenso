@@ -102,7 +102,7 @@ export default class Maps extends Component {
           });
       }
       if (granted === true || granted === PermissionsAndroid.RESULTS.GRANTED) {
-        if (this.props.ubicacionIncidencia) {
+        if (this.props.ubicacionIncidencia || this.props.ubicacionFormulario) {
           console.log("mostrara tu ubicacion");
           navigator.geolocation.getCurrentPosition(
             position => {

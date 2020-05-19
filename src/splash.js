@@ -17,7 +17,7 @@ export default class Splash extends Component {
     }
 
     _loadInnitialState = async () => {
-        var value = await AsyncStorage.getItem('@User:access_token');
+        var value = await AsyncStorage.getItem('@User:token');
         var id = await AsyncStorage.getItem('@User:id');
         var estado = "Activo"
         if (id !== null){

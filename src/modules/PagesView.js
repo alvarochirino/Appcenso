@@ -80,7 +80,7 @@ class PagesView extends Component {
 
    realizarReporte = async () => {
       if (this.state.btn6 == 1) {
-         var value = await AsyncStorage.getItem('@User:access_token');
+         var value = await AsyncStorage.getItem('@User:token');
          if (value !== null) {
             this.props.navigation.dispatch(StackActions.push({
                routeName: 'NuestrasObras',
