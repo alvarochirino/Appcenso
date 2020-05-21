@@ -113,12 +113,15 @@ const styles = StyleSheet.create ({
     color: 'black',
     marginBottom: 5,
     textAlign: 'center',
+    marginVertical: 4,
   },
   input: {
     width: '95%',
-    height: 35,
+    height: 34,
     borderColor: '#000',
     borderWidth: 1,
     borderRadius: 10,
+    paddingVertical: 2,
+    paddingHorizontal: 4,
   },
 });

@@ -278,6 +278,7 @@ const styles = StyleSheet.create({
     backgroundColor: "silver",
     borderRadius: 10,
     paddingVertical: 2,
+    paddingHorizontal: 4,
   },
   txt1: {
     fontSize: 7,

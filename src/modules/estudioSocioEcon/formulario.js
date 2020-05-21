@@ -436,10 +436,12 @@ const styles = StyleSheet.create ({
   },
   input: {
     flex: 1,
-    height: 36,
+    height: 34,
     borderColor: '#000',
     borderWidth: 1,
     borderRadius: 10,
+    paddingVertical: 2,
+    paddingHorizontal: 4,
   },
   txt1: {
     fontSize: 16,

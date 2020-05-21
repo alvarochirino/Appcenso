@@ -181,6 +181,7 @@ const styles = StyleSheet.create ({
     backgroundColor: 'silver',
     borderRadius: 10,
     paddingVertical: 0,
+    paddingHorizontal: 4,
   },
   text1: {
     fontSize: 12,
