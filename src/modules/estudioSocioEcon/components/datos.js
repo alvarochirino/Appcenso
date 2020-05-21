@@ -1,18 +1,18 @@
-import React, { Component } from "react";
-import { StyleSheet, TextInput, View, Text } from "react-native";
-import RadioGroup from "react-native-radio-buttons-group";
-import AsyncStorage from "@react-native-community/async-storage";
+import React, {Component} from 'react';
+import {StyleSheet, TextInput, View, Text} from 'react-native';
+import RadioGroup from 'react-native-radio-buttons-group';
+import AsyncStorage from '@react-native-community/async-storage';
 
-import Dropdown from "./dropDown";
-import API from "../../../../utils/api";
+import Dropdown from './dropDown';
+import API from '../../../../utils/api';
 
 export default class DatosFamiliar extends Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super (props);
     this.state = {
       data: {
-        nombre: "",
-        edad: "",
+        nombre: '',
+        edad: '',
         sexo: 0,
         idRol: 0,
         posicion: props.posicion,
@@ -22,96 +22,93 @@ export default class DatosFamiliar extends Component {
       rol: [
         {
           id: 2,
-          value: "Esposo/a",
+          value: 'Esposo/a',
         },
         {
           id: 3,
-          value: "Hijo/a",
+          value: 'Hijo/a',
         },
         {
           id: 4,
-          value: "Abuelo/a",
+          value: 'Abuelo/a',
         },
         {
           id: 5,
-          value: "Otro",
+          value: 'Otro',
         },
       ],
       tSexo: [
         {
-          label: "M",
+          label: 'M',
           value: 0,
         },
         {
-          label: "F",
+          label: 'F',
           value: 1,
         },
       ],
     };
   }
 
-  async componentDidMount() {
+  async componentDidMount () {
     if (this.props.posicion === 1) {
-      const idUsuario = await AsyncStorage.getItem("@User:id");
-      const u = await API.getUsuario(idUsuario);
-      let nombre = u.nombre1 + " ";
-      if (u.nombre2 !== null) nombre += u.nombre2 + " ";
-      nombre += u.apellido1 + " ";
+      const idUsuario = await AsyncStorage.getItem ('@User:id');
+      const u = await API.getUsuario (idUsuario);
+      let nombre = u.nombre1 + ' ';
+      if (u.nombre2 !== null) nombre += u.nombre2 + ' ';
+      nombre += u.apellido1 + ' ';
       if (u.nombre2 !== null) nombre += u.apellido2;
-      await this.setState({
+      await this.setState ({
         data: {
           nombre: nombre,
-          edad: "",
+          edad: '',
           sexo: 0,
           idRol: 1,
           posicion: 1,
         },
       });
-      const ficha = await AsyncStorage.getItem("@User:fichaFam");
-      if (ficha === null) {
-        global.datosIntegrant.unshift(this.state.data);
-      }
+      global.datosIntegrant.unshift (this.state.data);
     } else {
-      global.datosIntegrant.push(this.state.data);
+      global.datosIntegrant.push (this.state.data);
     }
   }
 
   cambio = (text, type) => {
     const copia = this.state.data;
-    if (type == "nombre") {
+    if (type == 'nombre') {
       copia.nombre = text;
     }
-    if (type == "edad") {
-      if (text !== "") {
-        const edad = parseInt(text);
+    if (type == 'edad') {
+      if (text !== '') {
+        const edad = parseInt (text);
         if (edad >= 0 && edad <= 120) copia.edad = text;
       } else {
         copia.edad = text;
       }
     }
-    this.setState({ data: copia });
+    this.setState ({data: copia});
   };
 
   elegirRolFamilia = async (value, index) => {
     const copia = this.state.data;
-    await this.setState({
+    await this.setState ({
       idRol: this.state.rol[index].id,
     });
     copia.idRol = this.state.idRol;
-    this.setState({ data: copia });
+    this.setState ({data: copia});
   };
 
   onPress = async () => {
     const copia = this.state.data;
-    await this.setState({
-      sexo: this.state.tSexo.find((e) => e.selected == true).value,
+    await this.setState ({
+      sexo: this.state.tSexo.find (e => e.selected == true).value,
     });
     copia.sexo = this.state.sexo;
-    this.setState({ data: copia });
+    this.setState ({data: copia});
   };
 
-  render() {
-    const { rol, tSexo, data } = this.state;
+  render () {
+    const {rol, tSexo, data} = this.state;
     if (this.props.posicion === 1) {
       return (
         <View style={styles.container}>
@@ -124,8 +121,8 @@ export default class DatosFamiliar extends Component {
             <TextInput
               style={styles.input2}
               value={data.edad}
-              onChangeText={(text) => this.cambio(text, "edad")}
-              keyboardType={"numeric"}
+              onChangeText={text => this.cambio (text, 'edad')}
+              keyboardType={'number-pad'}
             />
             <Text style={styles.txt1}>SEXO:</Text>
             <RadioGroup
@@ -148,7 +145,7 @@ export default class DatosFamiliar extends Component {
           <TextInput
             style={styles.input1}
             value={data.nombre}
-            onChangeText={(text) => this.cambio(text, "nombre")}
+            onChangeText={text => this.cambio (text, 'nombre')}
           />
         </View>
         <View style={styles.row}>
@@ -156,8 +153,8 @@ export default class DatosFamiliar extends Component {
           <TextInput
             style={styles.input2}
             value={data.edad}
-            onChangeText={(text) => this.cambio(text, "edad")}
-            keyboardType={"numeric"}
+            onChangeText={text => this.cambio (text, 'edad')}
+            keyboardType={'number-pad'}
           />
           <Text style={styles.txt1}>SEXO:</Text>
           <RadioGroup
@@ -176,32 +173,32 @@ export default class DatosFamiliar extends Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create ({
   container: {
     flex: 1,
-    alignItems: "center",
+    alignItems: 'center',
   },
   row: {
-    alignItems: "center",
-    flexDirection: "row",
+    alignItems: 'center',
+    flexDirection: 'row',
     marginTop: 5,
   },
   txt1: {
     fontSize: 16,
-    color: "black",
+    color: 'black',
   },
   input1: {
-    width: "73%",
+    width: '73%',
     height: 33,
-    borderColor: "#000",
+    borderColor: '#000',
     borderWidth: 1,
     borderRadius: 10,
     paddingVertical: 0,
   },
   input2: {
-    width: "25%",
+    width: '25%',
     height: 33,
-    borderColor: "#000",
+    borderColor: '#000',
     borderWidth: 1,
     borderRadius: 10,
     marginRight: 10,

@@ -101,7 +101,7 @@ export default class Bono extends Component {
               style={styles.input}
               value={cantidad}
               onChangeText={text => this.cambiarCantidad (text)}
-              keyboardType={'numeric'}
+              keyboardType={'number-pad'}
             />
           </View>
         </View>

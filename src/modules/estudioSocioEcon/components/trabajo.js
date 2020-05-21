@@ -3,11 +3,16 @@ import {StyleSheet, TextInput, View, Text} from 'react-native';
 import Dropdown from './dropDown';
 
 export default class Trabajo extends Component {
-  constructor () {
-    super ();
+  constructor (props) {
+    super (props);
     this.state = {
-      trabajo: '',
-      idTipotrabajo: 0,
+      trabajo: {
+        descrip: '',
+        idTipoTrab: 0,
+        idIngreso: 0,
+        posicion: props.posicion, 
+      },
+      idTipoTrab: 0,
       tipoTrabajo: [
         {
           id: 1,
@@ -22,7 +27,7 @@ export default class Trabajo extends Component {
           value: 'Informal',
         },
       ],
-      idIngresoMens: 0,
+      idIngreso: 0,
       ingresoMens: [
         {
           id: 1,
@@ -44,65 +49,32 @@ export default class Trabajo extends Component {
     };
   }
 
+  componentDidMount() {
+    global.datosTrabajo.push(this.state.trabajo);
+  }
+
   cambiarDescripc = async descrip => {
-    await this.setState ({trabajo: descrip});
-    const copia = global.ficha;
-    switch (this.props.posicion) {
-      case 'primer':
-        copia.descripT1 = descrip;
-        break;
-      case 'segundo':
-        copia.descripT2 = descrip;
-        break;
-      case 'tercer':
-        copia.descripT3 = descrip;
-        break;
-      default:
-        console.log ('entro default');
-    }
-    global.ficha = copia;
+    const copia = this.state.trabajo;
+    copia.descrip = descrip;
+    this.setState({ trabajo: copia });
   };
 
   elegirTipoTrabajo = async (value, index) => {
+    const copia = this.state.trabajo;
     await this.setState ({
-      idTipotrabajo: this.state.tipoTrabajo[index].id,
+      idTipoTrab: this.state.tipoTrabajo[index].id,
     });
-    const copia = global.ficha;
-    switch (this.props.posicion) {
-      case 'primer':
-        copia.tipoT1 = this.state.idTipotrabajo;
-        break;
-      case 'segundo':
-        copia.tipoT2 = this.state.idTipotrabajo;
-        break;
-      case 'tercer':
-        copia.tipoT3 = this.state.idTipotrabajo;
-        break;
-      default:
-        console.log ('entro default');
-    }
-    global.ficha = copia;
+    copia.idTipoTrab = this.state.idTipoTrab;
+    this.setState({ trabajo: copia });
   };
 
   elegirIngresoMensual = async (value, index) => {
-    await this.setState ({
-      idIngresoMens: this.state.ingresoMens[index].id,
-    });
-    const copia = global.ficha;
-    switch (this.props.posicion) {
-      case 'primer':
-        copia.ingresoT1 = this.state.idIngresoMens;
-        break;
-      case 'segundo':
-        copia.ingresoT2 = this.state.idIngresoMens;
-        break;
-      case 'tercer':
-        copia.ingresoT3 = this.state.idIngresoMens;
-        break;
-      default:
-        console.log ('entro default');
-    }
-    global.ficha = copia;
+    const copia = this.state.trabajo;
+      await this.setState ({
+        idIngreso: this.state.ingresoMens[index].id,
+      });
+    copia.idIngreso = this.state.idIngreso;
+    this.setState({ trabajo: copia });
   };
 
   render () {
@@ -114,7 +86,7 @@ export default class Trabajo extends Component {
         </Text>
         <TextInput
           style={styles.input}
-          value={trabajo}
+          value={trabajo.descrip}
           onChangeText={text => this.cambiarDescripc (text)}
         />
         <Dropdown

@@ -519,7 +519,7 @@ class Api {
     })
       .then (response => response.json ())
       .catch (error => {
-        console.error (error);
+        console.error ('errorApi', error);
       });
   }
 }

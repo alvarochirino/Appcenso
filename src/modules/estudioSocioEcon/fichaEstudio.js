@@ -13,7 +13,7 @@ export default class FichaEstudio extends Component {
           subtitle="DE CANASTA FAMILIAR"
           navigation={this.props.navigation}
         />
-        <Formulario />
+        <Formulario navigation={this.props.navigation}/>
       </View>
     );
   }
