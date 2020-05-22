@@ -37,8 +37,14 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSCameraUsageDescription</key>
+	<string>AVCaptureDeviceInput</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>CLLocationManager requestWhenInUseAuthorization:</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>AVAudioSession requestRecordPermission:</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>UIImagePickerController</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>ConthraxSb-Regular.ttf</string>
@@ -69,16 +75,8 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>NSCameraUsageDescription</key>
-	<string>AVCaptureDeviceInput</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>UIImagePickerController</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>AVAudioSession requestRecordPermission:</string>
 </dict>
 </plist>
