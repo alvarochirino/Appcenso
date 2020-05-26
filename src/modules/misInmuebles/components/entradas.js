@@ -3,7 +3,6 @@ import {
    Text, View, StyleSheet, TextInput, TouchableOpacity, Alert, ActivityIndicator,
    Animated, Dimensions, Keyboard, UIManager,
 } from 'react-native';
-import { StackedBarChart } from 'react-native-svg-charts'
 
 import API from '../../../../utils/api'
 
@@ -49,7 +48,7 @@ export default class Entradas extends Component {
                   inmueble: inmueble,
                })
             } else {
-               Alert.alert('datos incorrectos')
+               Alert.alert('Datos incorrectos')
                this.setState({
                   verificado: false,
                })

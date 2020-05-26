@@ -7,6 +7,9 @@ clear project
 generar apk
 SmartCat123
 
+subir a app store connect
+xcrun altool --upload-app -f /Users/alvarochirino/Desktop/pruebas.ipa -t ios -u alvarochirino@gmail.com -p xbjr-hgum-qzvq-tjuk —output-format xml
+
 
 GIT
 git init
@@ -28,3 +31,6 @@ git pull origin master --allow-unrelated-histories
 https://github.com/alexherold-dev/smartapp.git
 
 AIzaSyAv0i9fDPbZ724ekFGxoFfguFIeXkJXzfIAXs
+
+lista de paquetes y versiones
+npm outdated
