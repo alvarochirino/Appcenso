@@ -2,6 +2,7 @@ package com.smartapp_yc;
 
 import android.app.Application;
 
+import com.airbnb.android.react.maps.BuildConfig;
 import com.airbnb.android.react.maps.MapsPackage;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
