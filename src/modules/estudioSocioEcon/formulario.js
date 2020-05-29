@@ -291,7 +291,7 @@ export default class FichaEstudio extends Component {
         });
       })
       .catch (e => {
-        console.log ('error', e);
+        console.log ('errorCamera', e);
         if (Platform.OS === 'ios') {
           check (PERMISSIONS.IOS.CAMERA)
             .then (result => {

@@ -25,16 +25,18 @@ export default class AppViewContainer extends Component {
     super (props);
     this.state = {
       imagenes: [],
-      mensaje: '',
+      btnSolicitud: 0,
     };
   }
 
   async componentDidMount () {
+    const lista = await API.getBotons ();
+    if (lista != null) {
+      this.setState ({btnSolicitud: lista[6].activo});
+    }
     const listaImagenes = await API.getImagenCampaña ();
     if (listaImagenes != null) {
-      this.setState ({
-        imagenes: listaImagenes,
-      });
+      this.setState ({imagenes: listaImagenes});
     }
   }
 
@@ -50,17 +52,6 @@ export default class AppViewContainer extends Component {
       this.props.navigation.dispatch (resetAction);
     }
   };
-
-  mensaje () {
-    /* setTimeout(() => {
-         if(this.state.imagenes.length == 0){
-            this.setState({
-               mensaje: 'Compruebe su conexión a internet',
-            })
-            Alert.alert(this.state.mensaje)
-         }
-      }, 10000) */
-  }
 
   verVideos = url => {
     let inicio = url.indexOf ('v=');
@@ -90,13 +81,14 @@ export default class AppViewContainer extends Component {
   }
 
   render () {
+    const {imagenes, btnSolicitud} = this.state;
     return (
       <ScrollView>
         <SafeAreaView>
           <View style={styles.containerImage}>
-            {this.state.imagenes.length > 0
+            {imagenes.length > 0
               ? <Carousel autoplay autoplayTimeout={5000} loop index={0}>
-                  {this.state.imagenes.map ((image, index) =>
+                  {imagenes.map ((image, index) =>
                     this.renderPage (image, index)
                   )}
                 </Carousel>
@@ -108,14 +100,15 @@ export default class AppViewContainer extends Component {
           <ViewEncuesta />
           <Pages navigation={this.props.navigation} />
 
-          <TouchableOpacity
-            onPress={() => this.props.navigation.navigate ('FichaEstudio')}
-          >
-            <Text style={styles.buttonText2}>
-              ¡Solicitud de canasta familiar!
-            </Text>
-          </TouchableOpacity>
-
+          {btnSolicitud === 1
+            ? <TouchableOpacity
+                onPress={() => this.props.navigation.navigate ('FichaEstudio')}
+              >
+                <Text style={styles.buttonText2}>
+                  ¡Solicitud de canasta familiar!
+                </Text>
+              </TouchableOpacity>
+            : null}
           <View style={styles.containerLogo}>
             <TouchableOpacity onPress={this.logout} style={styles.button}>
               <Text style={styles.buttonText}>Cerrar Sesion</Text>

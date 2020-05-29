@@ -347,6 +347,24 @@ class Api {
       });
   }
 
+  validarTramite2 (numeroTramite, codigo) {
+    return fetch (`${BASE_API}validarTramite2`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify ({
+        id_ruat: numeroTramite,
+        codigo: codigo,
+      }),
+    })
+      .then (response => response.json ())
+      .catch (error => {
+        console.error (error);
+      });
+  }
+
   guardarParticipacion (id_usuario, id_pregunta) {
     return fetch (`${BASE_API}guardarParticipacion`, {
       method: 'POST',
