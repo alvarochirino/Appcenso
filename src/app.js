@@ -15,7 +15,9 @@ import ViewMisInmuebles from './modules/misInmuebles/viewMisInmuebles';
 import ViewMisTramites from './modules/misTramites/viewMisTramites';
 import ViewTransportePub from './modules/transportePub/viewTransportePub';
 import ViewVideos from './modules/ViewVideos';
-import FichaEstudio from './modules/estudioSocioEcon/fichaEstudio';
+import FichaEstudio from './modules/estudioSocioEcon';
+import ControlSanitario from './modules/controlSanitario';
+import Enfermedad from './modules/controlSanitario/Enfermedad';
 
 const MainNavigator = createStackNavigator (
   {
@@ -63,9 +65,11 @@ const MainNavigator = createStackNavigator (
     },
     ViewVideos,
     FichaEstudio,
+    ControlSanitario,
+    Enfermedad
   },
   {
-    initialRouteName: 'Splash',
+    initialRouteName: 'ControlSanitario',
     mode: 'modal', //quita encabezado
     headerMode: 'none',
   }

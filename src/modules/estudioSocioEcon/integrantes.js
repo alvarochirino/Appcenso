@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet, FlatList} from 'react-native';
 
 import Datos from './components/datos';
-import AppButton from './components/AppButton';
+import AppButton from 'pruebas/src/components/AppButton';
 
 export default class Integrantes extends Component {
   constructor () {
@@ -47,7 +47,7 @@ export default class Integrantes extends Component {
           ? <AppButton
               title="Agregar más"
               action={this._onPressButton}
-              color={'#808080'}
+              width = {140}
             />
           : null}
       </View>

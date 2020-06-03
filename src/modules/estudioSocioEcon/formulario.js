@@ -25,9 +25,9 @@ import Bono from './components/bono';
 import Integrantes from './integrantes';
 import Trabajo from './components/trabajo';
 import Dropdown from './components/dropDown';
-import AppButton from './components/AppButton';
 import RadioGroup from './components/radioGroup';
 import Maps from '../vendeCiudad/components/maps';
+import AppButton from 'pruebas/src/components/AppButton';
 
 import {
   ficha,
@@ -335,6 +335,7 @@ export default class FichaEstudio extends Component {
                 title="Enviar formulario guardado"
                 action={this.enviarGuardado}
                 color={'green'}
+                width = {140}
               />
             </View>
           : null}
@@ -406,7 +407,6 @@ export default class FichaEstudio extends Component {
           <AppButton
             title="TOMAR FOTO"
             action={() => this.pickSingleWithCamera (false)}
-            color={'#808080'}
           />
           {image ? this.renderImage (image) : null}
         </View>
@@ -421,7 +421,7 @@ export default class FichaEstudio extends Component {
             ? <AppButton
                 title="ENVIAR FORMULARIO"
                 action={this._onPressButton}
-                color={'#808080'}
+                width = {140}
               />
             : <ActivityIndicator style={{margin: 18}} />}
         </View>
@@ -442,6 +442,7 @@ const styles = StyleSheet.create ({
     borderRadius: 10,
     paddingVertical: 2,
     paddingHorizontal: 4,
+    marginHorizontal: 4,
   },
   txt1: {
     fontSize: 16,

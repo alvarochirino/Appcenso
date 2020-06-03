@@ -540,6 +540,27 @@ class Api {
         console.error ('errorApi', error);
       });
   }
+
+  async getDiagnosticos () {
+    try {
+      let response = await fetch (`${BASE_API}diagnostico`);
+      let responseJson = await response.json ();
+      return responseJson;
+    } catch (error) {
+      console.error (error);
+    }
+  }
+
+  async getEnfermedad (id) {
+    try {
+      let response = await fetch (`${BASE_API}enfermedad/${id}`);
+      let responseJson = await response.json ();
+      return responseJson;
+    } catch (error) {
+      console.log (error);
+    }
+  }
+
 }
 
 export default new Api ();
