@@ -204,9 +204,7 @@ export default class FichaEstudio extends Component {
             'No se pudo enviar el formulario',
             '¿Desea guardar el formulario para enviarlo despúes?',
             [
-              {
-                text: 'Cancelar',
-              },
+              {text: 'Cancelar'},
               {
                 text: 'Guardar',
                 onPress: () => {
@@ -335,7 +333,7 @@ export default class FichaEstudio extends Component {
                 title="Enviar formulario guardado"
                 action={this.enviarGuardado}
                 color={'green'}
-                width = {140}
+                width={140}
               />
             </View>
           : null}
@@ -421,7 +419,7 @@ export default class FichaEstudio extends Component {
             ? <AppButton
                 title="ENVIAR FORMULARIO"
                 action={this._onPressButton}
-                width = {140}
+                width={140}
               />
             : <ActivityIndicator style={{margin: 18}} />}
         </View>

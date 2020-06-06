@@ -561,6 +561,44 @@ class Api {
     }
   }
 
+  getResultado (idEnfermedad, valor) {
+    return fetch (`${BASE_API}resultado`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify ({
+        id_enferm: idEnfermedad,
+        valor: valor,
+      }),
+    })
+      .then (response => response.json ())
+      .catch (error => {
+        console.error (error);
+      });
+  }
+
+  guardarUbicacion (data) {
+    return fetch (`${BASE_API}guardarUbicac`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify ({
+        id_enferm: data.idEnfermedad,
+        latitud: data.latitud,
+        longitud: data.longitud,
+        id_usuario: data.idUsuario
+      }),
+    })
+      .then (response => response.json ())
+      .catch (error => {
+        console.error ('errorApi', error);
+      });
+  }
+
 }
 
 export default new Api ();

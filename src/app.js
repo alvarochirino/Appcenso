@@ -7,8 +7,6 @@ import AppViewContainer from './modules/AppViewContainer';
 import AppViewInvitadoContainer from './modules/AppViewInvitadoContainer';
 import ViewMiMunicipio from './modules/miMunicipio/viewMiMunicipio';
 import ViewReporte from './modules/reporte/ViewReporte';
-import ViewReporteMedioAmbiente
-  from './modules/reporte/ViewReporteMedioAmbiente';
 import ViewVendeCiudad from './modules/vendeCiudad/viewVendeCiudad';
 import ViewMisImpuestos from './modules/misImpuestos/viewMisImpuestos';
 import ViewMisInmuebles from './modules/misInmuebles/viewMisInmuebles';
@@ -17,7 +15,8 @@ import ViewTransportePub from './modules/transportePub/viewTransportePub';
 import ViewVideos from './modules/ViewVideos';
 import FichaEstudio from './modules/estudioSocioEcon';
 import ControlSanitario from './modules/controlSanitario';
-import Enfermedad from './modules/controlSanitario/Enfermedad';
+import Diagnostico from './modules/controlSanitario/Diagnostico';
+import InfoEnfermedad from './modules/controlSanitario/InfoEnfermedad';
 
 const MainNavigator = createStackNavigator (
   {
@@ -45,9 +44,6 @@ const MainNavigator = createStackNavigator (
     NuestrasObras: {
       screen: ViewReporte,
     },
-    MedioAmbiente: {
-      screen: ViewReporteMedioAmbiente,
-    },
     MisImpuestos: {
       screen: ViewMisImpuestos,
     },
@@ -66,10 +62,11 @@ const MainNavigator = createStackNavigator (
     ViewVideos,
     FichaEstudio,
     ControlSanitario,
-    Enfermedad
+    Diagnostico,
+    InfoEnfermedad
   },
   {
-    initialRouteName: 'ControlSanitario',
+    initialRouteName: 'Splash',
     mode: 'modal', //quita encabezado
     headerMode: 'none',
   }
