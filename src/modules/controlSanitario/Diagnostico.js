@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet, Text, Alert, Linking} from 'react-native';
 
 import API from 'pruebas/utils/api';
+import Maps from 'pruebas/src/components/Maps';
 import Encabezado from '../../components/encabezado';
 import AppButton from 'pruebas/src/components/AppButton';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -27,8 +28,8 @@ class Diagnostico extends Component {
     let data = {
       idEnfermedad: this.props.navigation.getParam ('idEnfermedad', 0),
     };
-    data.latitud = await AsyncStorage.getItem ('@Reporte:latitud');
-    data.longitud = await AsyncStorage.getItem ('@Reporte:longitud');
+    data.latitud = await AsyncStorage.getItem ('@User:lat');
+    data.longitud = await AsyncStorage.getItem ('@User:lon');
     const idUsuario = await AsyncStorage.getItem ('@User:id');
     data.idUsuario = parseInt (idUsuario);
     let guardo = await API.guardarUbicacion (data);
@@ -70,13 +71,18 @@ class Diagnostico extends Component {
                   </View>
                   <Text style={styles.txt1}>RECOMENDACION</Text>
                   <Text style={styles.txt2}>{recomend}</Text>
+                  <View style={styles.containerMap}>
+                    <Text style={styles.txt2}>
+                      Se enviará la siguiente posición en el mapa:
+                    </Text>
+                    <Maps/>
+                  </View>
                   <AppButton
                     title="ASISTENCIA MÉDICA"
                     action={() => this._llamarEmerg (tel1)}
                     color={'#ef0d55'}
                   />
                 </View>}
-
       </View>
     );
   }
@@ -109,6 +115,10 @@ const styles = StyleSheet.create ({
     fontWeight: 'bold',
     margin: 10,
     textAlign: 'center',
+  },
+  containerMap: {
+    height: 200,
+    width: '90%',
   },
 });
 

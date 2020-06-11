@@ -425,10 +425,8 @@ class Api {
       let responseJson = await response.json ();
       return responseJson;
     } catch (error) {
-      Alert.alert (
-        'No se pudo recuperar las lineas de transp., compruebe su conexión a internet'
-      );
-      return [];
+      console.log (error);
+      return null;
     }
   }
 
@@ -465,7 +463,7 @@ class Api {
     }
   }
 
-  guardarFamilia (ficha) {
+  guardarFamilia (ficha) {//TODO poner alert
     return fetch (`${BASE_API}guardarFamilia`, {
       method: 'POST',
       headers: {
@@ -486,7 +484,6 @@ class Api {
         t3_descrip: ficha.descripT3,
         t3_tipo: ficha.tipoT3,
         t3_ingreso: ficha.ingresoT3,
-
         b1_tipo: ficha.tipoB1,
         b1_monto: ficha.cantB1,
         b2_tipo: ficha.tipoB2,
@@ -495,7 +492,6 @@ class Api {
         b3_monto: ficha.cantB3,
         b4_tipo: ficha.tipoB4,
         b4_monto: ficha.cantB4,
-
         tenencia: ficha.idTenencia,
         agua: ficha.agua,
         alcant: ficha.alcant,
@@ -516,7 +512,7 @@ class Api {
     })
       .then (response => response.json ())
       .catch (error => {
-        console.error (error);
+        console.log ('errorA', error);
       });
   }
 

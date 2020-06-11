@@ -3,6 +3,7 @@ import {View, StyleSheet, FlatList} from 'react-native';
 
 import Datos from './components/datos';
 import AppButton from 'pruebas/src/components/AppButton';
+import Separator from 'pruebas/src/components/VerticalSeparador';
 
 export default class Integrantes extends Component {
   constructor () {
@@ -12,7 +13,7 @@ export default class Integrantes extends Component {
       estructuraValid: [1, 1, 1, 1, 1],
       mostrarBtn: true,
     };
-    global.datosIntegrant = [];
+    global.datosIntegr = [];
     global.estructuraValid = this.state.estructuraValid;
   }
 
@@ -25,10 +26,6 @@ export default class Integrantes extends Component {
     global.estructuraValid = this.state.estructuraValid;
   };
 
-  keyExtractor = item => item.toString ();
-
-  itemSeparator = () => <View style={styles.separator} />;
-
   renderItem = ({item}) => {
     return <Datos posicion={item} />;
   };
@@ -38,16 +35,16 @@ export default class Integrantes extends Component {
     return (
       <View style={styles.container}>
         <FlatList
-          keyExtractor={this.keyExtractor}
+          keyExtractor={item => item.toString ()}
           data={estructuraFam}
-          ItemSeparatorComponent={this.itemSeparator}
+          ItemSeparatorComponent={() => <Separator />}
           renderItem={this.renderItem}
         />
         {mostrarBtn
           ? <AppButton
               title="Agregar más"
               action={this._onPressButton}
-              width = {140}
+              width={140}
             />
           : null}
       </View>
@@ -61,10 +58,5 @@ const styles = StyleSheet.create ({
     paddingTop: 4,
     alignItems: 'center',
     backgroundColor: '#eee',
-  },
-  separator: {
-    borderTopWidth: 2,
-    borderTopColor: '#000',
-    marginHorizontal: 10,
   },
 });

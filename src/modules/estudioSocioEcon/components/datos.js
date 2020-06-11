@@ -3,8 +3,8 @@ import {StyleSheet, TextInput, View, Text} from 'react-native';
 import RadioGroup from 'react-native-radio-buttons-group';
 import AsyncStorage from '@react-native-community/async-storage';
 
-import Dropdown from './dropDown';
 import API from '../../../../utils/api';
+import Dropdown from 'pruebas/src/components/DropDown';
 
 export default class DatosFamiliar extends Component {
   constructor (props) {
@@ -67,9 +67,9 @@ export default class DatosFamiliar extends Component {
           posicion: 1,
         },
       });
-      global.datosIntegrant.unshift (this.state.data);
+      global.datosIntegr.unshift (this.state.data);
     } else {
-      global.datosIntegrant.push (this.state.data);
+      global.datosIntegr.push (this.state.data);
     }
   }
 

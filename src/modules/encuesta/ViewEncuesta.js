@@ -5,7 +5,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 import API from '../../../utils/api'
 import Pregunta from './components/pregunta'
-import Separator from './components/vertical-separator'
+import Separator from 'pruebas/src/components/VerticalSeparador';
 
 let posicion = -1
 

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {StyleSheet, TextInput, View, Text} from 'react-native';
-import Dropdown from './dropDown';
+
+import Dropdown from 'pruebas/src/components/DropDown';
 
 export default class Trabajo extends Component {
   constructor (props) {
@@ -10,7 +11,7 @@ export default class Trabajo extends Component {
         descrip: '',
         idTipoTrab: 0,
         idIngreso: 0,
-        posicion: props.posicion, 
+        posicion: props.posicion,
       },
       idTipoTrab: 0,
       tipoTrabajo: [
@@ -49,14 +50,14 @@ export default class Trabajo extends Component {
     };
   }
 
-  componentDidMount() {
-    global.datosTrabajo.push(this.state.trabajo);
+  componentDidMount () {
+    global.datosTrabajo.push (this.state.trabajo);
   }
 
   cambiarDescripc = async descrip => {
     const copia = this.state.trabajo;
     copia.descrip = descrip;
-    this.setState({ trabajo: copia });
+    this.setState ({trabajo: copia});
   };
 
   elegirTipoTrabajo = async (value, index) => {
@@ -65,16 +66,16 @@ export default class Trabajo extends Component {
       idTipoTrab: this.state.tipoTrabajo[index].id,
     });
     copia.idTipoTrab = this.state.idTipoTrab;
-    this.setState({ trabajo: copia });
+    this.setState ({trabajo: copia});
   };
 
   elegirIngresoMensual = async (value, index) => {
     const copia = this.state.trabajo;
-      await this.setState ({
-        idIngreso: this.state.ingresoMens[index].id,
-      });
+    await this.setState ({
+      idIngreso: this.state.ingresoMens[index].id,
+    });
     copia.idIngreso = this.state.idIngreso;
-    this.setState({ trabajo: copia });
+    this.setState ({trabajo: copia});
   };
 
   render () {

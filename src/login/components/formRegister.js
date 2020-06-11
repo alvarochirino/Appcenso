@@ -12,7 +12,8 @@ import { StackActions, NavigationActions } from "react-navigation";
 import AsyncStorage from "@react-native-community/async-storage";
 
 import API from "../../../utils/api";
-import Dropdown from "../../modules/estudioSocioEcon/components/dropDown";
+import Dropdown from 'pruebas/src/components/DropDown';
+
 export default class FormRegister extends Component {
   state = {
     nombre1: "",

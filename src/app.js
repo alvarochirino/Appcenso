@@ -5,7 +5,7 @@ import Login from './login/containers/login';
 import Register from './login/containers/register';
 import AppViewContainer from './modules/AppViewContainer';
 import AppViewInvitadoContainer from './modules/AppViewInvitadoContainer';
-import ViewMiMunicipio from './modules/miMunicipio/viewMiMunicipio';
+import MiMunicipio from './modules/miMunicipio';
 import ViewReporte from './modules/reporte/ViewReporte';
 import ViewVendeCiudad from './modules/vendeCiudad/viewVendeCiudad';
 import ViewMisImpuestos from './modules/misImpuestos/viewMisImpuestos';
@@ -36,7 +36,7 @@ const MainNavigator = createStackNavigator (
       screen: AppViewInvitadoContainer,
     },
     MiMunicipio: {
-      screen: ViewMiMunicipio,
+      screen: MiMunicipio,
     },
     VendeCiudad: {
       screen: ViewVendeCiudad,

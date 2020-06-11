@@ -45,7 +45,7 @@ class Enfermedad extends Component {
             <Text style={styles.txt1}>PREVENCION</Text>
             <Text style={styles.txt2}>{prevencion}</Text>
             <AppButton
-              title="CONSULTAS MÉDICAS"
+              title="CONSULTA MÉDICA"
               action={() => tel2 && Linking.openURL (`tel:${tel2}`)}
               color={'rgb(38, 168, 193)'}
             />

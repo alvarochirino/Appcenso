@@ -24,10 +24,11 @@ import API from '../../../utils/api';
 import Bono from './components/bono';
 import Integrantes from './integrantes';
 import Trabajo from './components/trabajo';
-import Dropdown from './components/dropDown';
+import Maps from 'pruebas/src/components/Maps';
 import RadioGroup from './components/radioGroup';
-import Maps from '../vendeCiudad/components/maps';
+import Dropdown from 'pruebas/src/components/DropDown';
 import AppButton from 'pruebas/src/components/AppButton';
+import Separator from 'pruebas/src/components/VerticalSeparador';
 
 import {
   ficha,
@@ -83,7 +84,7 @@ export default class FichaEstudio extends Component {
   };
 
   validarIntegrantes = async () => {
-    await global.datosIntegrant.map (item => {
+    await global.datosIntegr.map (item => {
       if (
         !(item.nombre === '' && item.edad === '' && item.idRol === 0) &&
         !(item.nombre !== '' && item.edad !== '' && item.idRol !== 0)
@@ -104,128 +105,125 @@ export default class FichaEstudio extends Component {
   validarTrabajos = async () => {
     let cont = 3;
     await global.datosTrabajo.map (item => {
+      const {descrip, idTipoTrab, idIngreso, posicion} = item;
       if (
-        !(item.descrip === '' &&
-          item.idTipoTrab === 0 &&
-          item.idIngreso === 0) &&
-        !(item.descrip !== '' && item.idTipoTrab > 0 && item.idIngreso > 0)
+        !(descrip === '' && idTipoTrab === 0 && idIngreso === 0) &&
+        !(descrip !== '' && idTipoTrab > 0 && idIngreso > 0)
       ) {
-        Alert.alert ('Completar datos del ' + item.posicion + ' trabajo');
+        Alert.alert ('Completar datos del ' + posicion + ' trabajo');
         cont--;
       }
     });
     return cont === 3;
   };
 
-  _onPressButton = async () => {
-    this.setState ({mostrarEnviar: false});
-    const {
-      numInmu,
-      idTipoFamilia,
-      cantFamilia,
-      idTenencia,
-      observac,
-      image,
-    } = this.state;
-    if (idTipoFamilia === 0) {
-      Alert.alert ('Debe seleccionar el tipo de familia');
-    } else if (cantFamilia === 0) {
-      Alert.alert ('Seleccionar la cantidad de familias que vive en el lote');
-    } else if (idTenencia === 0) {
-      Alert.alert ('Debe seleccionar el tipo de tenencia');
-    } else if (image === null) {
-      Alert.alert ('Debe tomar una foto');
-    } else if (image.height > image.width) {
-      Alert.alert ('La foto debe ser tomada en forma horizontal');
-    } else {
-      const valido1 = await this.validarIntegrantes ();
-      const valido2 = await this.validarTrabajos ();
-      console.log ('valido1', valido1);
-      console.log ('valido2', valido2);
-      if (valido1 && valido2) {
-        //cumple con todo
-        const fichaCopia = global.ficha;
-        let numeroInmueble = 0;
-        if (numInmu !== '') {
-          numeroInmueble = parseInt (numInmu);
-        }
-        fichaCopia.numInmu = numeroInmueble;
-        fichaCopia.idTipoFamilia = idTipoFamilia;
-        fichaCopia.cantFamilia = cantFamilia;
-        fichaCopia.idTenencia = idTenencia;
-        fichaCopia.observac = observac;
-        await global.datosTrabajo.map (item => {
-          switch (item.posicion) {
-            case 'primer':
-              if (item.descrip !== '') {
-                fichaCopia.descripT1 = item.descrip;
-                fichaCopia.tipoT1 = item.idTipoTrab;
-                fichaCopia.ingresoT1 = item.idIngreso;
-              }
-              break;
-            case 'segundo':
-              fichaCopia.descripT2 = item.descrip;
-              fichaCopia.tipoT2 = item.idTipoTrab;
-              fichaCopia.ingresoT2 = item.idIngreso;
-              break;
-            case 'tercer':
-              fichaCopia.descripT3 = item.descrip;
-              fichaCopia.tipoT3 = item.idTipoTrab;
-              fichaCopia.ingresoT3 = item.idIngreso;
-              break;
-            default:
-              console.log ('entro default');
+  _enviar = async () => {
+    try {
+      this.setState ({mostrarEnviar: false});
+      const {numInmu, idTipoFamilia, cantFamilia, idTenencia} = this.state;
+      const {observac, image} = this.state;
+      if (idTipoFamilia === 0) {
+        Alert.alert ('Debe seleccionar el tipo de familia');
+      } else if (cantFamilia === 0) {
+        Alert.alert ('Seleccionar la cantidad de familias que vive en el lote');
+      } else if (idTenencia === 0) {
+        Alert.alert ('Debe seleccionar el tipo de tenencia');
+      } else if (image === null) {
+        Alert.alert ('Debe tomar una foto');
+      } else if (image.height > image.width) {
+        Alert.alert ('La foto debe ser tomada en forma horizontal');
+      } else {
+        const valido1 = await this.validarIntegrantes ();
+        const valido2 = await this.validarTrabajos ();
+        console.log ('valido1', valido1);
+        console.log ('valido2', valido2);
+        if (valido1 && valido2) {
+          //cumple con todo
+          const fichaCopia = global.ficha;
+          let numeroInmueble = 0;
+          if (numInmu !== '') {
+            numeroInmueble = parseInt (numInmu);
           }
-        });
-        fichaCopia.lat = await AsyncStorage.getItem ('@Reporte:latitud');
-        fichaCopia.lon = await AsyncStorage.getItem ('@Reporte:longitud');
-        const idUsuario = await AsyncStorage.getItem ('@User:id');
-        fichaCopia.idUsuario = parseInt (idUsuario);
-        fichaCopia.foto = 'data:image/png;base64,' + image.data;
-        global.ficha = fichaCopia;
-        console.log ('fichaglo', global.ficha);
-        console.log ('datos', global.datosIntegrant);
-        console.log ('trabajos', global.datosTrabajo);
-        let familia = await API.guardarFamilia (global.ficha);
-        console.log ('familia', familia);
-        if (familia) {
-          global.datosIntegrant.map (item => {
-            this.insertarIntegrantes (item, familia.id);
+          fichaCopia.numInmu = numeroInmueble;
+          fichaCopia.idTipoFamilia = idTipoFamilia;
+          fichaCopia.cantFamilia = cantFamilia;
+          fichaCopia.idTenencia = idTenencia;
+          fichaCopia.observac = observac;
+          await global.datosTrabajo.map (item => {
+            switch (item.posicion) {
+              case 'primer':
+                if (item.descrip !== '') {
+                  fichaCopia.descripT1 = item.descrip;
+                  fichaCopia.tipoT1 = item.idTipoTrab;
+                  fichaCopia.ingresoT1 = item.idIngreso;
+                }
+                break;
+              case 'segundo':
+                fichaCopia.descripT2 = item.descrip;
+                fichaCopia.tipoT2 = item.idTipoTrab;
+                fichaCopia.ingresoT2 = item.idIngreso;
+                break;
+              case 'tercer':
+                fichaCopia.descripT3 = item.descrip;
+                fichaCopia.tipoT3 = item.idTipoTrab;
+                fichaCopia.ingresoT3 = item.idIngreso;
+                break;
+              default:
+                console.log ('entro default');
+            }
           });
-          const ficha = await AsyncStorage.getItem ('@User:fichaFam');
-          if (ficha !== null) {
-            AsyncStorage.removeItem ('@User:fichaFam');
-            AsyncStorage.removeItem ('@User:integrFam');
-          }
-          Alert.alert ('Enviado correctamente');
-          this.props.navigation.navigate ('Home');
-        } else {
-          Alert.alert (
-            'No se pudo enviar el formulario',
-            '¿Desea guardar el formulario para enviarlo despúes?',
-            [
-              {text: 'Cancelar'},
-              {
-                text: 'Guardar',
-                onPress: () => {
-                  this.setState ({guardado: true});
-                  Alert.alert (
-                    'Formulario guardado',
-                    'Puede enviarlo desde el boton que se encuentra al inicio del formulario!'
-                  );
-                  const fichaGuardar = JSON.stringify (global.ficha);
-                  const integrGuardar = JSON.stringify (global.datosIntegrant);
-                  AsyncStorage.setItem ('@User:fichaFam', fichaGuardar);
-                  AsyncStorage.setItem ('@User:integrFam', integrGuardar);
+          fichaCopia.lat = await AsyncStorage.getItem ('@User:lat');
+          fichaCopia.lon = await AsyncStorage.getItem ('@User:lon');
+          const idUsuario = await AsyncStorage.getItem ('@User:id');
+          fichaCopia.idUsuario = parseInt (idUsuario);
+          fichaCopia.foto = 'data:image/png;base64,' + image.data;
+          global.ficha = fichaCopia;
+          console.log ('fichaglo', global.ficha);
+          console.log ('datos', global.datosIntegr);
+          console.log ('trabajos', global.datosTrabajo);
+          let familia = await API.guardarFamilia (global.ficha);
+          console.log ('familia', familia);
+          if (familia) {
+            global.datosIntegr.map (item => {
+              this.insertarIntegrantes (item, familia.id);
+            });
+            const ficha = await AsyncStorage.getItem ('@User:fichaFam');
+            if (ficha !== null) {
+              AsyncStorage.removeItem ('@User:fichaFam');
+              AsyncStorage.removeItem ('@User:integrFam');
+            }
+            Alert.alert ('Enviado correctamente');
+            this.props.navigation.navigate ('Home');
+          } else {
+            Alert.alert (
+              'No se pudo enviar el formulario',
+              '¿Desea guardar el formulario para enviarlo despúes?',
+              [
+                {text: 'Cancelar'},
+                {
+                  text: 'Guardar',
+                  onPress: () => {
+                    this.setState ({guardado: true});
+                    Alert.alert (
+                      'Formulario guardado',
+                      'Puede enviarlo desde el boton que se encuentra al inicio del formulario!'
+                    );
+                    const fichaGuardar = JSON.stringify (global.ficha);
+                    const integrGuardar = JSON.stringify (global.datosIntegr);
+                    AsyncStorage.setItem ('@User:fichaFam', fichaGuardar);
+                    AsyncStorage.setItem ('@User:integrFam', integrGuardar);
+                  },
                 },
-              },
-            ],
-            {cancelable: false}
-          );
+              ],
+              {cancelable: false}
+            );
+          }
         }
       }
+      this.setState ({mostrarEnviar: true});
+    } catch (error) {
+      console.log ('errorEnviar', error);
     }
-    this.setState ({mostrarEnviar: true});
   };
 
   insertarIntegrantes = async (item, idFamilia) => {
@@ -238,14 +236,14 @@ export default class FichaEstudio extends Component {
   enviarGuardado = async () => {
     const ficha = await AsyncStorage.getItem ('@User:fichaFam');
     global.ficha = JSON.parse (ficha);
-    const datosIntegrant = await AsyncStorage.getItem ('@User:integrFam');
-    global.datosIntegrant = JSON.parse (datosIntegrant);
+    const datosIntegr = await AsyncStorage.getItem ('@User:integrFam');
+    global.datosIntegr = JSON.parse (datosIntegr);
     console.log ('fichaglo', global.ficha);
-    console.log ('datos', global.datosIntegrant);
+    console.log ('datos', global.datosIntegr);
     let familia = await API.guardarFamilia (global.ficha);
     console.log ('familia', familia);
     if (familia) {
-      global.datosIntegrant.map (item => {
+      global.datosIntegr.map (item => {
         this.insertarIntegrantes (item, familia.id);
       });
       AsyncStorage.removeItem ('@User:fichaFam');
@@ -254,10 +252,6 @@ export default class FichaEstudio extends Component {
       this.props.navigation.navigate ('Home');
     }
   };
-
-  keyExtractor = item => item.id.toString ();
-
-  itemSeparator = () => <View style={styles.separator} />;
 
   renderItem1 = ({item}) => {
     return <Trabajo {...item} />;
@@ -295,15 +289,13 @@ export default class FichaEstudio extends Component {
             .then (result => {
               switch (result) {
                 case RESULTS.UNAVAILABLE:
-                  console.log (
-                    'Esta función no está disponible (en este dispositivo / en este contexto)'
-                  );
+                  console.log ('Esta función no está disponible');
                   break;
                 case RESULTS.BLOCKED:
-                  console.log (
-                    'El permiso es denegado y ya no se puede solicitar'
-                  );
+                  console.log ('Permiso denegado y ya no se puede solicitar');
+                  //TODO revisar alert
                   Alert.alert (
+                    'Permiso denegado',
                     'Active el permiso de camara desde configuraciones'
                   );
                   openSettings ().catch (() =>
@@ -327,16 +319,15 @@ export default class FichaEstudio extends Component {
     const {guardado, numInmu, aclaracion, image, mostrarEnviar} = this.state;
     return (
       <ScrollView>
-        {guardado
-          ? <View style={styles.containerCenter}>
-              <AppButton
-                title="Enviar formulario guardado"
-                action={this.enviarGuardado}
-                color={'green'}
-                width={140}
-              />
-            </View>
-          : null}
+        {guardado &&
+          <View style={styles.containerCenter}>
+            <AppButton
+              title="Enviar formulario guardado"
+              action={this.enviarGuardado}
+              color={'green'}
+              width={140}
+            />
+          </View>}
         <View style={{flexDirection: 'row'}}>
           <Text style={styles.txt1}>Número de inmueble:</Text>
           <TextInput
@@ -362,9 +353,9 @@ export default class FichaEstudio extends Component {
         </View>
         <FlatList
           style={styles.flatList}
-          keyExtractor={this.keyExtractor}
+          keyExtractor={item => item.id.toString ()}
           data={trabajosImp}
-          ItemSeparatorComponent={this.itemSeparator}
+          ItemSeparatorComponent={() => <Separator />}
           renderItem={this.renderItem1}
         />
         <View>
@@ -384,7 +375,7 @@ export default class FichaEstudio extends Component {
             Servicios con los que cuenta el predio
           </Text>
           <FlatList
-            keyExtractor={this.keyExtractor}
+            keyExtractor={item => item.id.toString ()}
             data={servicios}
             renderItem={this.renderItem2}
           />
@@ -406,19 +397,19 @@ export default class FichaEstudio extends Component {
             title="TOMAR FOTO"
             action={() => this.pickSingleWithCamera (false)}
           />
-          {image ? this.renderImage (image) : null}
+          {image && this.renderImage (image)}
         </View>
         <View style={{height: 200}}>
           <Text style={styles.txt1}>
             Se enviará la siguiente posición en el mapa:
           </Text>
-          <Maps ubicacionFormulario={true} />
+          <Maps />
         </View>
         <View style={styles.containerCenter}>
           {mostrarEnviar
             ? <AppButton
                 title="ENVIAR FORMULARIO"
-                action={this._onPressButton}
+                action={this._enviar}
                 width={140}
               />
             : <ActivityIndicator style={{margin: 18}} />}

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { StyleSheet, TextInput, View, Text } from "react-native";
-import Dropdown from "./dropDown";
+
 import API from "../../../../utils/api";
+import Dropdown from 'pruebas/src/components/DropDown';
 
 export default class Bono extends Component {
   constructor() {

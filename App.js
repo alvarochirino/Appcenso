@@ -1,38 +1,20 @@
-import React, { Component } from 'react';
-import { Text, View, StatusBar } from 'react-native';
-import SplashScreen from 'react-native-splash-screen'
-import { Provider } from 'react-redux'
-import { PersistGate } from 'redux-persist/integration/react'
+import React, {Component} from 'react';
+import {StatusBar} from 'react-native';
+import SplashScreen from 'react-native-splash-screen';
 
-import AppLayout from './src/app'
-import { store, persistor } from './store'
+import AppLayout from './src/app';
 
-type Props = {};
-export default class App extends Component<Props> {
-  componentDidMount() {
-    SplashScreen.hide();
+export default class App extends Component {
+  componentDidMount () {
+    SplashScreen.hide ();
   }
 
-  render() {
+  render () {
     return (
-      <Provider
-        store={store}
-      >
-        <PersistGate
-          //loading={<Text>Cargando...</Text>}
-          persistor={persistor}
-        >
-          <View style={{ flex: 1 }}>
-            <StatusBar
-              barStyle="default"
-              backgroundColor="#000"
-            />
-            <AppLayout />
-          </View>
-        </PersistGate>
-      </Provider>
-    )
+      <>
+        <StatusBar barStyle="default" backgroundColor="#000" />
+        <AppLayout />
+      </>
+    );
   }
 }
-
-
