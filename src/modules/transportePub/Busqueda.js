@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {View, StyleSheet, Dimensions, ScrollView} from 'react-native';
 import {Dropdown} from 'react-native-material-dropdown';
 
-import API from '../../../../utils/api';
+import API from '../../../utils/api';
 import Maps from 'pruebas/src/components/Maps';
 
 const width = Dimensions.get ('window').width - 10;

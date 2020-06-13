@@ -11,7 +11,7 @@ import ViewVendeCiudad from './modules/vendeCiudad/viewVendeCiudad';
 import ViewMisImpuestos from './modules/misImpuestos/viewMisImpuestos';
 import ViewMisInmuebles from './modules/misInmuebles/viewMisInmuebles';
 import ViewMisTramites from './modules/misTramites/viewMisTramites';
-import ViewTransportePub from './modules/transportePub/viewTransportePub';
+import TransportePublico from './modules/transportePub';
 import ViewVideos from './modules/ViewVideos';
 import FichaEstudio from './modules/estudioSocioEcon';
 import ControlSanitario from './modules/controlSanitario';
@@ -57,7 +57,7 @@ const MainNavigator = createStackNavigator (
       screen: ViewMisInmuebles,
     },
     TransportePub: {
-      screen: ViewTransportePub,
+      screen: TransportePublico,
     },
     ViewVideos,
     FichaEstudio,

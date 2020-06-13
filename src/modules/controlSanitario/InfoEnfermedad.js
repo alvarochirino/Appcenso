@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, StyleSheet, Text, Linking} from 'react-native';
+import {View, StyleSheet, Text, Linking, ScrollView} from 'react-native';
 
 import API from 'pruebas/utils/api';
 import Encabezado from '../../components/encabezado';
@@ -33,23 +33,25 @@ class Enfermedad extends Component {
     return (
       <View style={styles.container}>
         <Encabezado
-          title='DATOS DE LA ENFERMEDAD'
+          title="DATOS DE LA ENFERMEDAD"
           navigation={this.props.navigation}
         />
         {enfermedad &&
-          <View style={styles.containerCenter}>
+          <ScrollView>
             <Text style={styles.txt1}>{nombre}</Text>
             <Text style={styles.txt2}>{explicacion}</Text>
             <Text style={styles.txt1}>TRATAMIENTO</Text>
             <Text style={styles.txt2}>{tratamiento}</Text>
             <Text style={styles.txt1}>PREVENCION</Text>
             <Text style={styles.txt2}>{prevencion}</Text>
-            <AppButton
-              title="CONSULTA MÉDICA"
-              action={() => tel2 && Linking.openURL (`tel:${tel2}`)}
-              color={'rgb(38, 168, 193)'}
-            />
-          </View>}
+            <View style={styles.containerCenter}>
+              <AppButton
+                title="CONSULTA MÉDICA"
+                action={() => tel2 && Linking.openURL (`tel:${tel2}`)}
+                color={'rgb(38, 168, 193)'}
+              />
+            </View>
+          </ScrollView>}
       </View>
     );
   }

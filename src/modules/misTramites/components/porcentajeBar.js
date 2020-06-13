@@ -4,8 +4,7 @@ import {StackedBarChart} from 'react-native-svg-charts';
 
 export default class porcentajeBar extends Component {
   render () {
-    const {porcentaje, tramite} = this.props;
-    const {estado, observacion} = tramite;
+    const {estado, observacion, porcentaje} = this.props.tramite;
     const data = [
       {
         diasRestantes: porcentaje,
@@ -13,15 +12,16 @@ export default class porcentajeBar extends Component {
       },
     ];
     let colors;
-    let estilo = 3;
+    let estilo;
     if (estado === 'SUSPENDIDO' || estado === 'OBSERVADO') {
-      colors = ['#f00', '#fff'];
+      colors = ['#f00', '#a70303'];
       estilo = 1;
     } else if (estado === 'FINALIZADO' || estado === 'PARA ENTREGAR') {
-      colors = ['#32cd32', '#fff'];
+      colors = ['#32cd32', '#0d8a05'];
       estilo = 2;
     } else {
       colors = ['#ffbe00', '#ff8e00'];
+      estilo = 3;
     }
     const keys = ['diasRestantes', 'diasPasados'];
     return (
@@ -33,7 +33,7 @@ export default class porcentajeBar extends Component {
               : estilo === 2 ? styles.finalizado : styles.enCurso
           }
         >
-          Estado: {tramite[0].estado}
+          Estado: {estado}
         </Text>
         <StackedBarChart
           horizontal
@@ -50,12 +50,8 @@ export default class porcentajeBar extends Component {
               : <Text style={styles.txtBar}>{porcentaje} %</Text>}
           </View>
         </StackedBarChart>
-
-        {observacion != null
-          ? <Text style={styles.txt}>
-              Observación: {observacion}
-            </Text>
-          : null}
+        {observacion !== '' &&
+          <Text style={styles.txt}>Observación: {observacion}</Text>}
       </View>
     );
   }
@@ -63,6 +59,7 @@ export default class porcentajeBar extends Component {
 
 const styles = StyleSheet.create ({
   container: {
+    width: '95%',
     padding: 10,
     margin: 10,
   },

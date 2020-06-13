@@ -4,7 +4,6 @@ import {
   View,
   StyleSheet,
   TextInput,
-  TouchableOpacity,
   Alert,
   ActivityIndicator,
   Animated,
@@ -17,6 +16,7 @@ import RadioGroup from 'react-native-radio-buttons-group';
 import PorcentajeBar from './porcentajeBar';
 
 import API from '../../../../utils/api';
+import AppButton from 'pruebas/src/components/AppButton';
 
 const {State: TextInputState} = TextInput;
 
@@ -24,14 +24,11 @@ export default class Entradas extends Component {
   constructor () {
     super ();
     this.state = {
-      verificado: false,
       codigo: '',
       numero: '',
-      tramite: '',
+      tramite: null,
       mostrarBoton: true,
-      porcentaje: 100,
       shift: new Animated.Value (0),
-
       opcion: '1',
       opciones: [
         {
@@ -70,49 +67,28 @@ export default class Entradas extends Component {
 
   _verificar = async () => {
     const {numero, codigo, opcion} = this.state;
-    if (numero != '' && codigo != '') {
-      this.setState ({
-        mostrarBoton: false,
-        verificado: false,
-      });
+    if (numero !== '' && numero !== '0' && codigo != '') {
+      this.setState ({mostrarBoton: false});
       let tramite;
       if (opcion === '1') {
-        tramite = await API.validarTramite2 (numero, codigo);
-      } else {
         tramite = await API.validarTramite (numero, codigo);
+      } else {
+        tramite = await API.validarTramite2 (numero, codigo);
       }
-      if (tramite != null) {
-        if (tramite.length == 1) {
-          this.setState ({
-            verificado: true,
-            tramite: tramite,
-          });
-          if (tramite[0].porcentaje > 0) {
-            this.setState ({porcentaje: tramite[0].porcentaje});
-          }
-        } else {
-          Alert.alert (
-            'Datos incorrectos',
-            'No se encontró ningun trámite con los datos ingresados'
-          );
-          this.setState ({verificado: false});
-        }
+      if (tramite) {
+        this.setState ({tramite});
+      } else {
+        Alert.alert (
+          'Datos incorrectos',
+          'No se encontró ningun trámite con los datos ingresados'
+        );
       }
       this.setState ({mostrarBoton: true});
     }
   };
 
   render () {
-    const {
-      porcentaje,
-      mostrarBoton,
-      verificado,
-      opciones,
-      shift,
-      tramite,
-      numero,
-      codigo,
-    } = this.state;
+    const {mostrarBoton, opciones, shift, tramite, numero, codigo} = this.state;
     return (
       <Animated.View
         style={[styles.container, {transform: [{translateY: shift}]}]}
@@ -140,13 +116,13 @@ export default class Entradas extends Component {
           onSubmitEditing={Platform.OS === 'android' ? this._verificar : null}
         />
         {mostrarBoton
-          ? <TouchableOpacity style={styles.button} onPress={this._verificar}>
-              <Text style={styles.buttonText}>VERIFICAR</Text>
-            </TouchableOpacity>
+          ? <AppButton
+              title="VERIFICAR"
+              action={this._verificar}
+              color={'rgb(38, 168, 193)'}
+            />
           : <ActivityIndicator style={{margin: 14}} />}
-        {verificado
-          ? <PorcentajeBar tramite={tramite} porcentaje={porcentaje} />
-          : null}
+        {tramite && <PorcentajeBar tramite={tramite} />}
       </Animated.View>
     );
   }
@@ -187,8 +163,7 @@ export default class Entradas extends Component {
 
 const styles = StyleSheet.create ({
   container: {
-    backgroundColor: 'white',
-    flexDirection: 'column',
+    alignItems: 'center',
     margin: 10,
   },
   text1: {
@@ -197,6 +172,7 @@ const styles = StyleSheet.create ({
   },
   input: {
     height: 36,
+    width: '95%',
     marginHorizontal: 15,
     borderColor: 'rgb(38, 168, 193)',
     borderWidth: 1,
@@ -207,21 +183,5 @@ const styles = StyleSheet.create ({
     fontFamily: 'ConthraxSb-Regular',
     margin: 4,
     textAlign: 'center',
-  },
-  button: {
-    width: 120,
-    margin: 10,
-    marginHorizontal: 15,
-    alignItems: 'center',
-    backgroundColor: 'rgb(38, 168, 193)',
-    borderRadius: 10,
-    padding: 6,
-  },
-  buttonText: {
-    padding: 2,
-    color: 'white',
-    textAlign: 'center',
-    fontFamily: 'ConthraxSb-Regular',
-    fontSize: 13,
   },
 });
