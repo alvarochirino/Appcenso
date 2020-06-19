@@ -180,11 +180,12 @@ export default class Maps extends Component {
   guardarPosicion = () => {
     const {region} = this.state;
     console.log ('region', region);
-    AsyncStorage.setItem ('@User:lat', region.latitude.toString ());
-    AsyncStorage.setItem ('@User:lon', region.longitude.toString ());
     if (this.props.ubicIncidencia) {
       AsyncStorage.setItem ('@Reporte:lat', region.latitude.toString ());
       AsyncStorage.setItem ('@Reporte:lon', region.longitude.toString ());
+    } else {
+      AsyncStorage.setItem ('@User:lat', region.latitude.toString ());
+      AsyncStorage.setItem ('@User:lon', region.longitude.toString ());
     }
   };
 
@@ -307,7 +308,13 @@ export default class Maps extends Component {
   };
 
   render () {
-    const {linea, listaTransp, ubicIncidencia, ubicDada, listaMarker} = this.props;
+    const {
+      linea,
+      listaTransp,
+      ubicIncidencia,
+      ubicDada,
+      listaMarker,
+    } = this.props;
     const {region, width, coordinate, verRuta} = this.state;
     const {latitud, longitud, nombre} = ubicDada || {};
     return (

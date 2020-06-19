@@ -11,7 +11,6 @@ subir a app store connect
 xcrun altool --upload-app -f /Users/alvarochirino/Desktop/pruebas.ipa -t ios -u alvarochirino@gmail.com -p xbjr-hgum-qzvq-tjuk —output-format xml
 
 GIT
-Christian-Martinez
 git init
 git remote add origin https://github.com/dharavp/AuthFirebase-react-native.gi
 git add .

@@ -25,7 +25,8 @@ export default class FormLogin extends Component {
   constructor (props) {
     super (props);
     this.state = {
-      numDocum: '',
+      celular: '',
+      //celular: '79079079',
       contraseña: '',
       mostrarBoton: true,
       shift: new Animated.Value (0),
@@ -48,31 +49,26 @@ export default class FormLogin extends Component {
     this.keyboardDidHideSub.remove ();
   }
 
-  _ingresar = () => {
-    const {numDocum, contraseña} = this.state;
-    if (numDocum === '') {
-      Alert.alert ('Número de documento no valido');
+  _ingresar = async () => {
+    const {celular, contraseña} = this.state;
+    if (celular !== '' && contraseña !== '') {
+      /* Alert.alert ('Número de celular no valido');
     } else if (contraseña === '') {
       Alert.alert ('Contraseña no valida');
-    } else {
+    } else { */
       this.setState ({mostrarBoton: false});
       dismissKeyboard ();
-      API.login (numDocum, contraseña).then (responseData => {
+      await API.login (parseInt (celular), contraseña).then (responseData => {
         console.log ('responseData', responseData);
         if (responseData != null) {
           if (responseData.error == 'Unauthorized') {
             this.setState ({mostrarBoton: true});
-            Alert.alert ('Número de documento  y/o contraseña incorrecta');
+            Alert.alert ('Número de celular  y/o contraseña incorrecta');
           } else if (responseData.access_token != null) {
+            const {access_token, user} = responseData;
             try {
-              AsyncStorage.setItem (
-                '@User:token',
-                responseData.access_token
-              );
-              AsyncStorage.setItem (
-                '@User:id',
-                responseData.user.id.toString ()
-              );
+              AsyncStorage.setItem ('@User:token', access_token);
+              AsyncStorage.setItem ('@User:id', user.id.toString ());
             } catch (e) {
               console.error ('@user', e.error);
             }
@@ -91,16 +87,18 @@ export default class FormLogin extends Component {
   };
 
   render () {
-    const {shift, mostrarBoton} = this.state;
+    const {shift, mostrarBoton, celular} = this.state;
     return (
       <Animated.View
         style={[styles.container, {transform: [{translateY: shift}]}]}
       >
         <View style={styles.row}>
-          <Text style={styles.text}>Nº DOCUMENTO:</Text>
+          <Text style={styles.text}>Nº CELULAR:</Text>
           <TextInput
             style={styles.input}
-            onChangeText={text => this.setState ({numDocum: text})}
+            value={celular}
+            onChangeText={text => this.setState ({celular: text})}
+            keyboardType={'number-pad'}
           />
         </View>
         <View style={styles.row}>
@@ -170,7 +168,7 @@ const styles = StyleSheet.create ({
     margin: 4,
   },
   text: {
-    fontSize: 10,
+    fontSize: 11,
     fontFamily: 'ConthraxSb-Regular',
     width: 108,
     color: 'black',

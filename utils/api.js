@@ -1,8 +1,7 @@
 import {Alert} from 'react-native';
 
-//const BASE_API = 'http://190.186.45.226/blog/public/api/';
-//const BASE_API = 'http://132.255.70.43/blog/public/api/';
-const BASE_API = 'http://132.255.70.43/smapp_yc/public/api/';
+//const BASE_API = 'http://132.255.70.43/smapp_yc/public/api/';
+const BASE_API = 'http://132.255.70.43/smapp_yc_v2/public/api/';
 
 class Api {
   async getInstituciones (id) {
@@ -63,9 +62,7 @@ class Api {
     nombre2,
     apellido1,
     apellido2,
-    doc_tipo,
-    doc_exp,
-    doc_numero,
+    celular,
     email,
     password
   ) {
@@ -78,14 +75,12 @@ class Api {
       body: JSON.stringify ({
         email: email,
         password: password,
-        nombre1:nombre1,
-        nombre2:nombre2,
-        apellido1:apellido1,
-        apellido2:apellido2,
-        doc_tipo:doc_tipo,
-        doc_exp:doc_exp,
-        doc_numero:doc_numero,
-        email:email,
+        nombre1: nombre1,
+        nombre2: nombre2,
+        apellido1: apellido1,
+        apellido2: apellido2,
+        celular: celular,
+        email: email,
         password: password,
       }),
     })
@@ -95,7 +90,7 @@ class Api {
       });
   }
 
-  login (numDocum, contraseña) {
+  login (celular, contraseña) {
     return fetch (`${BASE_API}auth/login`, {
       method: 'POST',
       headers: {
@@ -103,7 +98,7 @@ class Api {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify ({
-        doc_numero: numDocum,
+        celular: celular,
         password: contraseña,
       }),
     })
@@ -463,57 +458,60 @@ class Api {
     }
   }
 
-  guardarFamilia (ficha) {//TODO poner alert
-    return fetch (`${BASE_API}guardarFamilia`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify ({
-        id_user: ficha.idUsuario,
-        id_ruat: ficha.numInmu,
-        tipo_fam: ficha.idTipoFamilia,
-        cant_fam: ficha.cantFamilia,
-        t1_descrip: ficha.descripT1,
-        t1_tipo: ficha.tipoT1,
-        t1_ingreso: ficha.ingresoT1,
-        t2_descrip: ficha.descripT2,
-        t2_tipo: ficha.tipoT2,
-        t2_ingreso: ficha.ingresoT2,
-        t3_descrip: ficha.descripT3,
-        t3_tipo: ficha.tipoT3,
-        t3_ingreso: ficha.ingresoT3,
-        b1_tipo: ficha.tipoB1,
-        b1_monto: ficha.cantB1,
-        b2_tipo: ficha.tipoB2,
-        b2_monto: ficha.cantB2,
-        b3_tipo: ficha.tipoB3,
-        b3_monto: ficha.cantB3,
-        b4_tipo: ficha.tipoB4,
-        b4_monto: ficha.cantB4,
-        tenencia: ficha.idTenencia,
-        agua: ficha.agua,
-        alcant: ficha.alcant,
-        luz: ficha.luz,
-        gas: ficha.gas,
-        tvcable: ficha.tvcable,
-        internet: ficha.internet,
-        basura: ficha.basura,
-        centro_salud: ficha.centroSalud,
-        atencion_med: ficha.atencMedica,
-        cuidado_esp: ficha.cuidadoEsp,
-        covid: ficha.covid,
-        observ: ficha.observac,
-        coord_x: ficha.lat,
-        coord_y: ficha.lon,
-        foto: ficha.foto,
-      }),
-    })
-      .then (response => response.json ())
-      .catch (error => {
-        console.log ('errorA', error);
+  async guardarFamilia (ficha) {
+    try {
+      let response = await fetch (`${BASE_API}guardarFamilia`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify ({
+          id_user: ficha.idUsuario,
+          id_ruat: ficha.numInmu,
+          tipo_fam: ficha.idTipoFamilia,
+          cant_fam: ficha.cantFamilia,
+          t1_descrip: ficha.descripT1,
+          t1_tipo: ficha.tipoT1,
+          t1_ingreso: ficha.ingresoT1,
+          t2_descrip: ficha.descripT2,
+          t2_tipo: ficha.tipoT2,
+          t2_ingreso: ficha.ingresoT2,
+          t3_descrip: ficha.descripT3,
+          t3_tipo: ficha.tipoT3,
+          t3_ingreso: ficha.ingresoT3,
+          b1_tipo: ficha.tipoB1,
+          b1_monto: ficha.cantB1,
+          b2_tipo: ficha.tipoB2,
+          b2_monto: ficha.cantB2,
+          b3_tipo: ficha.tipoB3,
+          b3_monto: ficha.cantB3,
+          b4_tipo: ficha.tipoB4,
+          b4_monto: ficha.cantB4,
+          tenencia: ficha.idTenencia,
+          agua: ficha.agua,
+          alcant: ficha.alcant,
+          luz: ficha.luz,
+          gas: ficha.gas,
+          tvcable: ficha.tvcable,
+          internet: ficha.internet,
+          basura: ficha.basura,
+          centro_salud: ficha.centroSalud,
+          atencion_med: ficha.atencMedica,
+          cuidado_esp: ficha.cuidadoEsp,
+          covid: ficha.covid,
+          observ: ficha.observac,
+          coord_x: ficha.lat,
+          coord_y: ficha.lon,
+          foto: ficha.foto,
+        }),
       });
+      console.log('response', response)
+      let responseJson = await response.json ();
+      return responseJson;
+    } catch (error) {
+      console.error (error);
+    }
   }
 
   guardarIntegrante (integrante, idFamilia) {
@@ -586,7 +584,7 @@ class Api {
         id_enferm: data.idEnfermedad,
         latitud: data.latitud,
         longitud: data.longitud,
-        id_usuario: data.idUsuario
+        id_usuario: data.idUsuario,
       }),
     })
       .then (response => response.json ())
@@ -594,7 +592,6 @@ class Api {
         console.error ('errorApi', error);
       });
   }
-
 }
 
 export default new Api ();

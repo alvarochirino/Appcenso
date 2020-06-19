@@ -185,7 +185,7 @@ export default class FichaEstudio extends Component {
           console.log ('familia', familia);
           if (familia) {
             global.datosIntegr.map (item => {
-              this.insertarIntegrantes (item, familia.id);
+              this.insertarIntegrantes (item, familia);
             });
             const ficha = await AsyncStorage.getItem ('@User:fichaFam');
             if (ficha !== null) {
@@ -234,23 +234,25 @@ export default class FichaEstudio extends Component {
   };
 
   enviarGuardado = async () => {
+    this.setState ({mostrarEnviar: false});
     const ficha = await AsyncStorage.getItem ('@User:fichaFam');
-    global.ficha = JSON.parse (ficha);
+    global.ficha = await JSON.parse (ficha);
     const datosIntegr = await AsyncStorage.getItem ('@User:integrFam');
-    global.datosIntegr = JSON.parse (datosIntegr);
+    global.datosIntegr = await JSON.parse (datosIntegr);
     console.log ('fichaglo', global.ficha);
     console.log ('datos', global.datosIntegr);
     let familia = await API.guardarFamilia (global.ficha);
     console.log ('familia', familia);
     if (familia) {
       global.datosIntegr.map (item => {
-        this.insertarIntegrantes (item, familia.id);
+        this.insertarIntegrantes (item, familia);
       });
       AsyncStorage.removeItem ('@User:fichaFam');
       AsyncStorage.removeItem ('@User:integrFam');
       Alert.alert ('Enviado correctamente');
       this.props.navigation.navigate ('Home');
     }
+    this.setState ({mostrarEnviar: true});
   };
 
   renderItem1 = ({item}) => {
@@ -321,12 +323,15 @@ export default class FichaEstudio extends Component {
       <ScrollView>
         {guardado &&
           <View style={styles.containerCenter}>
+          {mostrarEnviar
+            ? 
             <AppButton
               title="Enviar formulario guardado"
               action={this.enviarGuardado}
               color={'green'}
               width={140}
             />
+            : <ActivityIndicator style={{margin: 18}} />}
           </View>}
         <View style={{flexDirection: 'row'}}>
           <Text style={styles.txt1}>Número de inmueble:</Text>

@@ -48,15 +48,16 @@ export default class Register extends Component {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    margin: 5,
+    marginHorizontal: 5,
+    marginVertical: 10,
   },
   image: {
-    height: 110,
-    width: 110,
+    height: 150,
+    width: 150,
     resizeMode: "contain",
   },
   txt: {
-    fontSize: 17,
+    fontSize: 18,
     fontFamily: "ConthraxSb-Regular",
     color: "black",
     textAlign: "center",
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   logo: {
-    height: 70,
+    height: 80,
     width: 70,
     resizeMode: "contain",
   },
