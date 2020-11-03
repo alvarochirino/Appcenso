@@ -11,7 +11,7 @@ export default class Institucion extends Component {
             {this.props.nombre}
           </Text>
         </View>
-        <View style={styles.containerSub}>
+        <View style={styles.containerOpc}>
           <Opciones informacion={this.props} />
         </View>
       </View>
@@ -26,7 +26,11 @@ const styles = StyleSheet.create ({
     flexDirection: 'row',
   },
   containerSub: {
-    flex: 1,
+    flex: 7,
+    justifyContent: 'center',
+  },
+  containerOpc: {
+    flex: 3,
     justifyContent: 'center',
   },
   text: {

@@ -506,7 +506,7 @@ class Api {
           foto: ficha.foto,
         }),
       });
-      console.log('response', response)
+      //console.log ('response', response);
       let responseJson = await response.json ();
       return responseJson;
     } catch (error) {

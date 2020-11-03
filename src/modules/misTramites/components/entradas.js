@@ -75,12 +75,12 @@ export default class Entradas extends Component {
       } else {
         tramite = await API.validarTramite2 (numero, codigo);
       }
-      if (tramite) {
+      if (tramite.estado) {
         this.setState ({tramite});
       } else {
         Alert.alert (
-          'Datos incorrectos',
-          'No se encontró ningun trámite con los datos ingresados'
+          'Alerta',
+          'No se encontró ningun trámite con los datos ingresados en el servidor'
         );
       }
       this.setState ({mostrarBoton: true});
@@ -107,12 +107,14 @@ export default class Entradas extends Component {
           style={styles.input}
           onChangeText={text => this.setState ({numero: text})}
           value={numero}
+          keyboardType={'number-pad'}
         />
         <Text style={styles.text2}>CÓDIGO DE ACCESO</Text>
         <TextInput
           style={styles.input}
           onChangeText={text => this.setState ({codigo: text})}
           value={codigo}
+          autoCapitalize={'characters'}
           onSubmitEditing={Platform.OS === 'android' ? this._verificar : null}
         />
         {mostrarBoton

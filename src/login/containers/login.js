@@ -46,7 +46,7 @@ export default class Login extends Component {
           />
           <View>
             <Text style={styles.text} />
-            <Text style={styles.text}>v 1.1</Text>
+            <Text style={styles.text}>v 2.0</Text>
           </View>
         </View>
       </View>

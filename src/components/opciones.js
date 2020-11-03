@@ -51,7 +51,7 @@ export default class Opciones extends Component {
     const {informacion} = this.props;
     const {horario, telefono, correo} = informacion;
     return (
-      <View style={styles.container}>
+      <View>
         <Modal isVisible={this.state.modalHorarioVisible}>
           <View style={styles.containerHorario}>
             <Text style={[styles.text, {fontWeight: 'bold'}]}>Horario</Text>
@@ -67,30 +67,34 @@ export default class Opciones extends Component {
             </View>
           </View>
         </Modal>
-        <View style={styles.icon}>
-          <TouchableOpacity onPress={() => this.enviarCorreo (correo)}>
-            {myIcon1}
-          </TouchableOpacity>
-        </View>
-        <View style={styles.telefono}>
-          <Text
-            style={styles.text}
-            adjustsFontSizeToFit
-            numberOfLines={1}
-            onPress={() => this.llamarNumero (telefono)}
-          >
-            {telefono != 0 ? telefono : '-'}
-          </Text>
-        </View>
-        <View style={styles.icon}>
-          <TouchableOpacity onPress={this.mostrarHorario}>
-            {myIcon2}
-          </TouchableOpacity>
-        </View>
-        <View style={styles.icon}>
-          <TouchableOpacity onPress={this.mostrarCamino}>
-            {myIcon3}
-          </TouchableOpacity>
+        <View>
+          <View style={styles.telefono}>
+            <Text
+              style={styles.text}
+              adjustsFontSizeToFit
+              numberOfLines={1}
+              onPress={() => this.llamarNumero (telefono)}
+            >
+              {telefono != 0 ? telefono : '-'}
+            </Text>
+          </View>
+          <View style={styles.container}>
+            <View style={styles.icon}>
+              <TouchableOpacity onPress={() => this.enviarCorreo (correo)}>
+                {myIcon1}
+              </TouchableOpacity>
+            </View>
+            <View style={styles.icon}>
+              <TouchableOpacity onPress={this.mostrarHorario}>
+                {myIcon2}
+              </TouchableOpacity>
+            </View>
+            <View style={styles.icon}>
+              <TouchableOpacity onPress={this.mostrarCamino}>
+                {myIcon3}
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
       </View>
     );

@@ -14,9 +14,6 @@ import ViewMisTramites from './modules/misTramites/viewMisTramites';
 import TransportePublico from './modules/transportePub';
 import ViewVideos from './modules/ViewVideos';
 import FichaEstudio from './modules/estudioSocioEcon';
-import ControlSanitario from './modules/controlSanitario';
-import Diagnostico from './modules/controlSanitario/Diagnostico';
-import InfoEnfermedad from './modules/controlSanitario/InfoEnfermedad';
 
 const MainNavigator = createStackNavigator (
   {
@@ -61,9 +58,6 @@ const MainNavigator = createStackNavigator (
     },
     ViewVideos,
     FichaEstudio,
-    ControlSanitario,
-    Diagnostico,
-    InfoEnfermedad
   },
   {
     initialRouteName: 'Splash',

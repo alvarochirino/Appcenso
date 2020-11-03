@@ -78,12 +78,6 @@ class PagesView extends Component {
     }
   };
 
-  controlSanitario = () => {
-    if (this.state.btn5 == 1) {
-      this.props.navigation.navigate ('ControlSanitario');
-    }
-  };
-
   realizarReporte = async () => {
     if (this.state.btn6 == 1) {
       var value = await AsyncStorage.getItem ('@User:token');
@@ -119,8 +113,8 @@ class PagesView extends Component {
           <TouchableOpacity onPress={this.transportePub} style={styles.item}>
             <Image source={transporte} style={styles.itemImage} />
           </TouchableOpacity>
-          <TouchableOpacity onPress={this.controlSanitario} style={styles.item}>
-            <Image source={controlsanitario} style={styles.itemImage} />
+          <TouchableOpacity onPress={this.vendeCiudad} style={styles.item}>
+            <Image source={vendeciudad} style={styles.itemImage} />
           </TouchableOpacity>
           <TouchableOpacity onPress={this.realizarReporte} style={styles.item}>
             <Image source={reportedesperfecto} style={styles.itemImage} />
