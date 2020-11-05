@@ -431,8 +431,11 @@ class Api {
       let responseJson = await response.json ();
       return responseJson;
     } catch (error) {
-      console.log (error);
-      return null;
+      if (error.message === 'Network request failed') {
+        return null;
+      } else {
+        console.log ('error', error);
+      }
     }
   }
 
@@ -535,62 +538,14 @@ class Api {
       });
   }
 
-  async getDiagnosticos () {
+  async getVersion () {
     try {
-      let response = await fetch (`${BASE_API}diagnostico`);
+      let response = await fetch (`${BASE_API}version`);
       let responseJson = await response.json ();
       return responseJson;
     } catch (error) {
       console.error (error);
     }
-  }
-
-  async getEnfermedad (id) {
-    try {
-      let response = await fetch (`${BASE_API}enfermedad/${id}`);
-      let responseJson = await response.json ();
-      return responseJson;
-    } catch (error) {
-      console.log (error);
-    }
-  }
-
-  getResultado (idEnfermedad, valor) {
-    return fetch (`${BASE_API}resultado`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify ({
-        id_enferm: idEnfermedad,
-        valor: valor,
-      }),
-    })
-      .then (response => response.json ())
-      .catch (error => {
-        console.error (error);
-      });
-  }
-
-  guardarUbicacion (data) {
-    return fetch (`${BASE_API}guardarUbicac`, {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify ({
-        id_enferm: data.idEnfermedad,
-        latitud: data.latitud,
-        longitud: data.longitud,
-        id_usuario: data.idUsuario,
-      }),
-    })
-      .then (response => response.json ())
-      .catch (error => {
-        console.error ('errorApi', error);
-      });
   }
 }
 

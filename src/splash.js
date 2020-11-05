@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, ActivityIndicator, Text, Alert} from 'react-native';
+import {StyleSheet, View, ActivityIndicator, Linking, Alert} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import AsyncStorage from '@react-native-community/async-storage';
 import {StackActions, NavigationActions} from 'react-navigation';
@@ -13,21 +13,33 @@ export default class Splash extends Component {
   }
 
   _loadInnitialState = async () => {
+    const VERSION_ACTUAL = '2.0';
+    //let versionDB = await API.getVersion()
+    let versionDB = '2.1'; //ejemplo
+    if (VERSION_ACTUAL !== versionDB) {
+      Alert.alert (
+        'Actualización',
+        'Hay una nueva version de la aplicación, actualizela desde la play store para tener una mejor experiencia',
+        [
+          {
+            text: 'IR',
+            onPress: () => {
+              Linking.openURL ('market://details?id=com.smartapp_yc');
+            },
+          },
+        ],
+        {cancelable: false}
+      );
+    }
     var value = await AsyncStorage.getItem ('@User:token');
+    console.log ('tokenuser?', value);
     var id = await AsyncStorage.getItem ('@User:id');
-    var estado = 'Activo';
+    var estado = null;
     if (id !== null) {
       var activo = await API.usuarioActivo (id);
-      console.log ('activo?', activo == null);
-      if (activo == null) {
-        estado = 'Bloqueado';
-      } else {
-        estado = activo.estado;
-      }
+      console.log ('activo?', activo);
+      if (activo !== null) estado = activo.estado;
     }
-    console.log ('id?', id);
-    console.log ('estado?', estado);
-    console.log ('tokenuser?', value);
     if (value !== null && estado == 'Activo') {
       const resetAction = StackActions.reset ({
         index: 0,
@@ -35,8 +47,10 @@ export default class Splash extends Component {
       });
       this.props.navigation.dispatch (resetAction);
     } else {
-      if (estado != 'Activo') {
+      if (estado === null) {
         Alert.alert ('Alerta', 'En este momento no tiene conexión a internet');
+      } else {
+        Alert.alert ('Alerta', 'Usted se encuentra bloqueado temporalmente');
       }
       const resetAction = StackActions.reset ({
         index: 0,

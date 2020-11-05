@@ -8,7 +8,7 @@ const mitramite = require ('./../../assets/mistramites.jpg');
 const immuebles = require ('./../../assets/immuebles.png');
 const transporte = require ('./../../assets/transporte.png');
 const vendeciudad = require ('./../../assets/vendeciudad.jpg');
-const controlsanitario = require ('./../../assets/controlsanitario.png');
+const white = require ('./../../assets/white.jpg');
 const reportedesperfecto = require ('./../../assets/reportedesperfecto.png');
 
 import API from '../../utils/api';
@@ -17,7 +17,6 @@ class PagesView extends Component {
   constructor (props) {
     super (props);
     this.state = {
-      listaBoton: [],
       btn1: 0,
       btn2: 0,
       btn3: 0,
@@ -28,18 +27,15 @@ class PagesView extends Component {
   }
 
   async componentDidMount () {
-    const lista = await API.getBotons ();
-    if (lista != null) {
-      this.setState ({
-        listaBoton: lista,
-      });
-      this.setState ({
-        btn1: this.state.listaBoton[0].activo,
-        btn2: this.state.listaBoton[1].activo,
-        btn3: this.state.listaBoton[2].activo,
-        btn4: this.state.listaBoton[3].activo,
-        btn5: this.state.listaBoton[4].activo,
-        btn6: this.state.listaBoton[5].activo,
+    const listaBoton = await API.getBotons ();
+    if (listaBoton != null) {
+      await this.setState ({
+        btn1: listaBoton[0].activo,
+        btn2: listaBoton[1].activo,
+        btn3: listaBoton[2].activo,
+        btn4: listaBoton[3].activo,
+        btn5: listaBoton[4].activo,
+        btn6: listaBoton[5].activo,
       });
     }
   }
@@ -117,7 +113,7 @@ class PagesView extends Component {
             <Image source={vendeciudad} style={styles.itemImage} />
           </TouchableOpacity>
           <TouchableOpacity onPress={this.realizarReporte} style={styles.item}>
-            <Image source={reportedesperfecto} style={styles.itemImage} />
+            <Image source={white} style={styles.itemImage} />
           </TouchableOpacity>
         </View>
       </View>
