@@ -22,25 +22,25 @@ PODS:
     - GoogleMaps
   - Google-Maps-iOS-Utils/QuadTree (2.1.0):
     - GoogleMaps
-  - GoogleMaps (2.5.0):
-    - GoogleMaps/Maps (= 2.5.0)
-  - GoogleMaps/Base (2.5.0)
-  - GoogleMaps/Maps (2.5.0):
+  - GoogleMaps (3.5.0):
+    - GoogleMaps/Maps (= 3.5.0)
+  - GoogleMaps/Base (3.5.0)
+  - GoogleMaps/Maps (3.5.0):
     - GoogleMaps/Base
-  - Permission-Camera (2.0.9):
+  - Permission-Camera (2.0.0):
     - RNPermissions
-  - Permission-LocationWhenInUse (2.0.9):
+  - Permission-LocationWhenInUse (2.0.0):
     - RNPermissions
-  - Permission-PhotoLibrary (2.0.9):
+  - Permission-PhotoLibrary (2.0.0):
     - RNPermissions
   - QBImagePickerController (3.4.0)
   - React (0.59.8):
     - React/Core (= 0.59.8)
-  - react-native-google-maps (0.24.2):
+  - react-native-google-maps (0.27.1):
     - Google-Maps-iOS-Utils (= 2.1.0)
-    - GoogleMaps (= 2.5.0)
+    - GoogleMaps (= 3.5.0)
     - React
-  - react-native-maps (0.24.2):
+  - react-native-maps (0.27.1):
     - React
   - react-native-youtube (1.1.0):
     - React
@@ -101,7 +101,7 @@ PODS:
     - QBImagePickerController
     - React/Core
     - RSKImageCropper
-  - RNPermissions (2.0.9):
+  - RNPermissions (2.0.0):
     - React
   - RSKImageCropper (2.2.3)
   - yoga (0.59.8.React)
@@ -181,21 +181,21 @@ SPEC CHECKSUMS:
   Folly: de497beb10f102453a1afa9edbf8cf8a251890de
   glog: aefd1eb5dda2ab95ba0938556f34b98e2da3a60d
   Google-Maps-iOS-Utils: c32891ff472eaaa1fca032beedafa1a013af7875
-  GoogleMaps: c087b8e5dfe87ca6ebf59adb9b4894a4146bec4f
-  Permission-Camera: b0fec577b27488314a885f9c74433e02f3585b9b
-  Permission-LocationWhenInUse: f5dd8f5c9a0412db5eddd299ae208d6268b595b1
-  Permission-PhotoLibrary: 51718ddf8c0baf1cebf323c68cedcb2ff0cf304a
+  GoogleMaps: 32ca02de09de357a10ac773f2c70f1986751392d
+  Permission-Camera: 4c4d5fc58e1a37e8a807e63403b64cda05a3fcdd
+  Permission-LocationWhenInUse: 9f540674150fa2e854020ba679341e8575e0513b
+  Permission-PhotoLibrary: 15c3b4badf2225fbb1bc0c55168e0ce0e9288d35
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
   React: 76e6aa2b87d05eb6cccb6926d72685c9a07df152
-  react-native-google-maps: 568cb03d0eae7fef93626f65d05be55642404ed4
-  react-native-maps: 0316ed017dbb64b33b227751fa810e2454fcfa39
+  react-native-google-maps: 0a989abda71059db2caa98b9dacca7a8f38a47d0
+  react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
   react-native-youtube: 668f1c6badb6bebd807f795e3ead85b3aa0737ac
   RNImageCropPicker: 6134b66a3d5bc13e2895a97c630a4254006902b4
-  RNPermissions: 6db7e0a4d94c9c02390d11020b1d3d187aaf77e5
+  RNPermissions: 43fe093bcfe89d3a05a4b82a695db9db9e7dcf21
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   yoga: 92b2102c3d373d1a790db4ab761d2b0ffc634f64
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
 PODFILE CHECKSUM: 01fffb0568ee18c202c6c2cb746cf9cb7931d502
 
-COCOAPODS: 1.9.0
+COCOAPODS: 1.10.0

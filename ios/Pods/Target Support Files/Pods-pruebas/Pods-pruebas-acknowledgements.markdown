@@ -409,7 +409,7 @@ third-party archives.
 
 ## GoogleMaps
 
-Copyright 2017 Google
+Copyright 2019 Google
 
 ## QBImagePickerController
 

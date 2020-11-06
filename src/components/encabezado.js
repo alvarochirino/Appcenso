@@ -14,7 +14,7 @@ const myIcon = <Icon name="chevron-left" size={24} />;
 
 export default function Encabezado (props) {
   volver = () => {
-    navigation.goBack (null);
+    props.navigation.goBack (null);
     return true;
   };
 

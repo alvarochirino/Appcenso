@@ -57,7 +57,7 @@ export default class DatosFamiliar extends Component {
       let nombre = u.nombre1 + ' ';
       if (u.nombre2 !== null) nombre += u.nombre2 + ' ';
       nombre += u.apellido1 + ' ';
-      if (u.nombre2 !== null) nombre += u.apellido2;
+      if (u.apellido2 !== null) nombre += u.apellido2;
       await this.setState ({
         data: {
           nombre: nombre,
