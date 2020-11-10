@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   Alert,
   ActivityIndicator,
+  Platform
 } from 'react-native';
 import {StackActions, NavigationActions} from 'react-navigation';
 import AsyncStorage from '@react-native-community/async-storage';
@@ -158,7 +159,7 @@ export default class FormRegister extends Component {
             style={styles.input}
             maxLength={15}
             onChangeText={text => this.setState ({celular: text})}
-            keyboardType={'number-pad'}
+            keyboardType={Platform.OS === 'android' ? 'number-pad': 'default'}
           />
         </View>
         <View style={styles.row}>

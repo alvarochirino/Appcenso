@@ -98,7 +98,7 @@ export default class FormLogin extends Component {
             style={styles.input}
             value={celular}
             onChangeText={text => this.setState ({celular: text})}
-            keyboardType={'number-pad'}
+            keyboardType={Platform.OS === 'android' ? 'number-pad': 'default'}
           />
         </View>
         <View style={styles.row}>

@@ -370,7 +370,7 @@ export default class Maps extends Component {
               ))}
           </MapView>}
         {ubicDada &&
-          <AppButton title="Ver ruta" action={this.verRuta} width={100} />}
+          <AppButton title="Ver ruta" action={this.verRuta} width={100} marginV={10}/>}
       </View>
     );
   }
