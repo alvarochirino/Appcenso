@@ -10,6 +10,7 @@ const transporte = require ('./../../assets/transporte.png');
 const vendeciudad = require ('./../../assets/vendeciudad.jpg');
 const white = require ('./../../assets/white.jpg');
 const reportedesperfecto = require ('./../../assets/reportedesperfecto.png');
+const boton = require ('./../../assets/boton.png');
 
 import API from '../../utils/api';
 
@@ -113,7 +114,7 @@ class PagesView extends Component {
             <Image source={vendeciudad} style={styles.itemImage} />
           </TouchableOpacity>
           <TouchableOpacity onPress={this.realizarReporte} style={styles.item}>
-            <Image source={white} style={styles.itemImage} />
+            <Image source={boton} style={styles.itemImage} />
           </TouchableOpacity>
         </View>
       </View>
