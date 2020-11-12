@@ -34,6 +34,9 @@ PODS:
   - Permission-PhotoLibrary (2.0.0):
     - RNPermissions
   - QBImagePickerController (3.4.0)
+  - RCTYouTube (2.0.1):
+    - React
+    - YoutubePlayer-in-WKWebView (~> 0.3.1)
   - React (0.59.8):
     - React/Core (= 0.59.8)
   - react-native-google-maps (0.27.1):
@@ -41,8 +44,6 @@ PODS:
     - GoogleMaps (= 3.5.0)
     - React
   - react-native-maps (0.27.1):
-    - React
-  - react-native-youtube (1.1.0):
     - React
   - React/Core (0.59.8):
     - yoga (= 0.59.8.React)
@@ -116,9 +117,9 @@ DEPENDENCIES:
   - Permission-Camera (from `../node_modules/react-native-permissions/ios/Camera.podspec`)
   - Permission-LocationWhenInUse (from `../node_modules/react-native-permissions/ios/LocationWhenInUse.podspec`)
   - Permission-PhotoLibrary (from `../node_modules/react-native-permissions/ios/PhotoLibrary.podspec`)
+  - RCTYouTube (from `../node_modules/react-native-youtube`)
   - react-native-google-maps (from `../node_modules/react-native-maps`)
   - react-native-maps (from `../node_modules/react-native-maps`)
-  - react-native-youtube (from `../node_modules/react-native-youtube`)
   - React/Core (from `../node_modules/react-native`)
   - React/CxxBridge (from `../node_modules/react-native`)
   - React/DevSupport (from `../node_modules/react-native`)
@@ -160,14 +161,14 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-permissions/ios/LocationWhenInUse.podspec"
   Permission-PhotoLibrary:
     :path: "../node_modules/react-native-permissions/ios/PhotoLibrary.podspec"
+  RCTYouTube:
+    :path: "../node_modules/react-native-youtube"
   React:
     :path: "../node_modules/react-native"
   react-native-google-maps:
     :path: "../node_modules/react-native-maps"
   react-native-maps:
     :path: "../node_modules/react-native-maps"
-  react-native-youtube:
-    :path: "../node_modules/react-native-youtube"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
   RNPermissions:
@@ -186,16 +187,16 @@ SPEC CHECKSUMS:
   Permission-LocationWhenInUse: 9f540674150fa2e854020ba679341e8575e0513b
   Permission-PhotoLibrary: 15c3b4badf2225fbb1bc0c55168e0ce0e9288d35
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
+  RCTYouTube: 7ff7d42f5ed42d185198681e967fd2c2b661375d
   React: 76e6aa2b87d05eb6cccb6926d72685c9a07df152
   react-native-google-maps: 0a989abda71059db2caa98b9dacca7a8f38a47d0
   react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
-  react-native-youtube: 668f1c6badb6bebd807f795e3ead85b3aa0737ac
   RNImageCropPicker: 6134b66a3d5bc13e2895a97c630a4254006902b4
   RNPermissions: 43fe093bcfe89d3a05a4b82a695db9db9e7dcf21
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   yoga: 92b2102c3d373d1a790db4ab761d2b0ffc634f64
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 01fffb0568ee18c202c6c2cb746cf9cb7931d502
+PODFILE CHECKSUM: 9e4ca4264d16db45f956487f6c2459d13428cc92
 
 COCOAPODS: 1.10.0

@@ -38,13 +38,13 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>AVCaptureDeviceInput</string>
+	<string>SmartApp Yacuiba requiere acceder a su cámara para capturar una foto y enviar el formulario de canasta familiar.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>SmartApp Yacuiba requiere su ubicación para mostrar una ruta hacia la institución pública y poder enviar el formulario de canasta familiar.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>CLLocationManager requestWhenInUseAuthorization:</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>AVAudioSession requestRecordPermission:</string>
+	<string>SmartApp Yacuiba requiere su ubicación para mostrar una ruta hacia la institución pública, informarse sobre el transporte público.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>UIImagePickerController</string>
+	<string>SmartApp Yacuiba requiere acceder a su galería para seleccionar fotos y poder enviar el formulario de canasta familiar.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>ConthraxSb-Regular.ttf</string>

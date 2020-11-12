@@ -44,8 +44,6 @@ target 'pruebas' do
 
   pod "YoutubePlayer-in-WKWebView", "~> 0.3.0"
 
-  pod 'react-native-youtube', :path => '../node_modules/react-native-youtube'
-
   permissions_path = '../node_modules/react-native-permissions/ios'
 
   pod 'Permission-Camera', :path => "#{permissions_path}/Camera.podspec"
@@ -53,6 +51,8 @@ target 'pruebas' do
   pod 'Permission-PhotoLibrary', :path => "#{permissions_path}/PhotoLibrary.podspec"
 
   pod 'RNPermissions', :path => '../node_modules/react-native-permissions'
+
+  pod 'RCTYouTube', :path => '../node_modules/react-native-youtube'
 
 end
 
