@@ -86,7 +86,7 @@ export default class Busqueda extends Component {
     return <Actividad {...item} />;
   };
 
-  _buscar = async () => {
+  /* _buscar = async () => {
     if (this.state.text != '') {
       let listaBusqueda = await API.buscarRubro (this.state.text);
       if (listaBusqueda != null) {
@@ -116,6 +116,38 @@ export default class Busqueda extends Component {
         });
       }
     }
+  }; */
+
+  _buscar = async () => {
+    
+      let listaBusqueda = await API.buscarRubro ("helados");
+      if (listaBusqueda != null) {
+        if (listaBusqueda.length == 0) {
+          listaBusqueda = await API.buscarActividad ("helados");
+          if (listaBusqueda.length == 0) {
+            listaBusqueda = await API.buscarDemas ("helados");
+            if (listaBusqueda.length == 0) {
+              Alert.alert ('No se encontro coincidencias');
+            } else {
+              this.setState ({
+                tipo: 'nombre',
+              });
+            }
+          } else {
+            this.setState ({
+              tipo: 'actividad',
+            });
+          }
+        } else {
+          this.setState ({
+            tipo: 'rubro',
+          });
+        }
+        this.setState ({
+          listaBusqueda: listaBusqueda,
+        });
+      }
+    
   };
 
   render () {
@@ -128,12 +160,12 @@ export default class Busqueda extends Component {
           >
             <Text style={styles.buttonText}>Buscar</Text>
           </TouchableOpacity>
-          <TextInput
+          {/* <TextInput
             autoCorrect={false}
             autoCapitalize="none"
             style={styles.textInput}
             onChangeText={text => this.setState({text})}
-          />
+          /> */}
         </View>
         <FlatList
           keyExtractor={item => item.toString ()}
